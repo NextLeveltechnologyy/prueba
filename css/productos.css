@@ -1,0 +1,35 @@
+#show1,
+.show1::before {
+    display: unset;
+    content: "Pantalon";
+}
+
+#show2,
+.show2::before {
+    display: unset;
+    content: "Remera";
+}
+
+#show3,
+.show3::before {
+    display: unset;
+    content: "Producto";
+}
+
+#show4,
+.show4::before {
+    display: unset;
+    content: "Producto";
+}
+
+#show5,
+.show5::before {
+    display: unset;
+    content: "Producto";
+}
+
+#show6,
+.show6::before {
+    display: unset;
+    content: "Producto";
+}
