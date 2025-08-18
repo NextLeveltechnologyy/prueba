@@ -1,13 +1,13 @@
 #show1,
 .show1::before {
     display: unset;
-    content: "Pantalon";
+    content: "Buzo cangurito";
 }
 
 #show2,
 .show2::before {
     display: unset;
-    content: "Remera";
+    content: "Buzo corto";
 }
 
 #show3,
@@ -29,6 +29,42 @@
 }
 
 #show6,
+.show6::before {
+    display: unset;
+    content: "Producto";
+}
+
+#show7,
+.show6::before {
+    display: unset;
+    content: "Producto";
+}
+
+#show8,
+.show6::before {
+    display: unset;
+    content: "Producto";
+}
+
+#show9,
+.show6::before {
+    display: unset;
+    content: "Producto";
+}
+
+#show10,
+.show6::before {
+    display: unset;
+    content: "Producto";
+}
+
+#show11,
+.show6::before {
+    display: unset;
+    content: "Producto";
+}
+
+#show12,
 .show6::before {
     display: unset;
     content: "Producto";
