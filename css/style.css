@@ -218,7 +218,7 @@ hr {
 .inventario input {
     width: 4vw;
     height: 4vw;
-    box-shadow: 0.5vw 0.5vw 0.5vw rgba(0, 0, 0, 0.3);
+    margin: 1vw;
 }
 
 .whatsapp-float,
@@ -382,13 +382,9 @@ footer {
         width: 30vw;
     }
 
-    nav {
-        z-index: 100;
-    }
-
     nav a,
     footer a {
-        font-size: 3vw;
+        font-size: 4vw;
     }
 
     .menu {
@@ -467,9 +463,9 @@ footer {
 }
 
 /*pantallas grandes*/
-@media (min-width:1200px) {
+@media (min-width:1600px) {
     .video-container {
-        left: 25%;
+        left: 35%;
     }
 
     .video {
@@ -496,10 +492,6 @@ footer {
 
     #cabecera {
         width: 10vw;
-    }
-
-    nav {
-        z-index: 100;
     }
 
     nav a,

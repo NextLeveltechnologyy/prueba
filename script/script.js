@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const contenedores = document.querySelectorAll("#inventario_contenedor > div");
-    let visibles = 4; // cantidad inicial de divs visibles
+    let visibles = 6; // cantidad inicial de divs visibles
 
     // Ocultar todos excepto los primeros
     contenedores.forEach((div, index) => {
@@ -10,10 +10,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     function mostrarMas() {
-        for (let i = visibles; i < visibles + 4 && i < contenedores.length; i++) {
+        for (let i = visibles; i < visibles + 6 && i < contenedores.length; i++) {
             contenedores[i].style.display = "flex"; // antes era "block"
         }
-        visibles += 4;
+        visibles += 6;
     }
 
     // Detectar scroll cerca del final
