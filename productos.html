@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Aura aromaterapias</title>
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Security-Policy" content="
+    style-src 'self' 'unsafe-inline';
+    img-src 'self' data:;
+    font-src 'self';
+    media-src 'self';
+    base-uri 'none';
+    form-action 'self';
+    frame-ancestors 'none';
+    object-src 'none';">
+</head>
+
+<body id="muestras">
+    <video autoplay muted loop id="videof">
+        <source src="videos/relax.mp4" type="video/mp4">
+    </video>
+    <div class="content">
+        <a href="index.html"><img class="logo" src="img/Logo.jpeg" alt="Aura aromaterapias"></a>
+    </div>
+    <nav id="sideMenu">
+        <a href="index.html"><img src="img/Logo.jpeg" alt="Aura Aromaterapias"></a>
+        <a href="index.html">Inicio</a>
+        <a href="productos.html">Productos</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
+    <div>
+        <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    </div>
+    <div class="boton">
+        <input id="boton1" type="button" value="Kits">
+        <input id="boton2" type="button" value="Velas">
+        <input id="boton3" type="button" value="Humidificadores">
+        <input id="boton4" type="button" value="Jabones">
+        <input id="boton5" type="button" value="Almohadillas">
+    </div>
+
+    <div id="inventario_contenedor">
+        <!--Kits-->
+        <div id="kits" class="inventario">
+            <div class="producto">
+                <label class="etiqueta"></label>
+                <label id="cantidad">Cantidad</label>
+                <input type="number">
+            </div>
+            <div class="foto">
+                <img src="img/kit_relajante1.png" alt="kit relajante 1">
+            </div>
+        </div>
+
+        <!--Velas-->
+        <div id="velas" class="inventario">
+            <div class="producto">
+                <label class="etiqueta"></label>
+                <label id="cantidad">Cantidad</label>
+                <input type="number">
+            </div>
+            <div class="foto">
+                <img src="img/peonia_rosa.png" alt="Vela molde peonia">
+            </div>
+        </div>
+
+        <div id="velas" class="inventario">
+            <div class="producto">
+                <label class="etiqueta"></label>
+                <label id="cantidad">Cantidad</label>
+                <input type="number">
+            </div>
+            <div class="foto">
+                <img src="img/peonia_violeta.webp" alt="vela molde peonia">
+            </div>
+        </div>
+
+        <div id="velas" class="inventario">
+            <div class="producto">
+                <label class="etiqueta"></label>
+                <label id="cantidad">Cantidad</label>
+                <input type="number">
+            </div>
+            <div class="foto">
+                <img src="img/cuenco_sandia.png" alt="Vela cuenco sandia">
+            </div>
+        </div>
+
+        <div id="velas" class="inventario">
+            <div class="producto">
+                <label class="etiqueta"></label>
+                <label id="cantidad">Cantidad</label>
+                <input type="number">
+            </div>
+            <div class="foto">
+                <img src="img/cuenco_vainilla.png" alt="Vela cuenco vainilla">
+            </div>
+        </div>
+
+        <div id="velas" class="inventario">
+            <div class="producto">
+                <label class="etiqueta"></label>
+                <label id="cantidad">Cantidad</label>
+                <input type="number">
+            </div>
+            <div class="foto">
+                <img src="img/cuenco_fresias.png" alt="Vela cuenco fresias">
+            </div>
+        </div>
+
+        <div id="velas" class="inventario">
+            <div class="producto">
+                <label class="etiqueta"></label>
+                <label id="cantidad">Cantidad</label>
+                <input type="number">
+            </div>
+            <div class="foto">
+                <img src="img/cuenco_fresias.png" alt="Vela cuenco fresias">
+            </div>
+        </div>
+
+        <!--Humidificadores-->
+        <div id="humidificadores" class="inventario">
+            <div class="producto">
+                <label class="etiqueta"></label>
+                <label id="cantidad">Cantidad</label>
+                <input type="number">
+            </div>
+            <div class="foto">
+                <img src="img/Humidificador_auto.png" alt="Humidificador apto automovil">
+            </div>
+        </div>
+
+        <div id="humidificadores" class="inventario">
+            <div class="producto">
+                <label class="etiqueta"></label>
+                <label id="cantidad">Cantidad</label>
+                <input type="number">
+            </div>
+            <div class="foto">
+                <img src="img/Humidificador_esfera300C.png" alt="Humidificador esfera">
+            </div>
+        </div>
+
+        <div id="humidificadores" class="inventario">
+            <div class="producto">
+                <label class="etiqueta"></label>
+                <label id="cantidad">Cantidad</label>
+                <input type="number">
+            </div>
+            <div class="foto">
+                <img src="img/Humidificador_jarron300C.png" alt="Humidificador jarron claro">
+            </div>
+        </div>
+
+        <div id="humidificadores" class="inventario">
+            <div class="producto">
+                <label class="etiqueta"></label>
+                <label id="cantidad">Cantidad</label>
+                <input type="number">
+            </div>
+            <div class="foto">
+                <img src="img/Humidificador_jarron300O.png" alt="Humidificador jarron oscuro">
+            </div>
+        </div>
+
+        <div id="humidificadores" class="inventario">
+            <div class="producto">
+                <label class="etiqueta"></label>
+                <label id="cantidad">Cantidad</label>
+                <input type="number">
+            </div>
+            <div class="foto">
+                <img src="img/Humidificador_pico_largo300O.png" alt="Humidificador pico largo">
+            </div>
+        </div>
+
+        <!--Jabones-->
+        <div id="jabones" class="inventario">
+            <div class="producto">
+                <label class="etiqueta"></label>
+                <label id="cantidad">Cantidad</label>
+                <input type="number">
+            </div>
+            <div class="foto">
+                <img src="img/jabon_vainilla-calendula.png" alt="Jabon vainilla y calendula">
+            </div>
+        </div>
+        <div id="jabones" class="inventario">
+            <div class="producto">
+                <label class="etiqueta"></label>
+                <label id="cantidad">Cantidad</label>
+                <input type="number">
+            </div>
+            <div class="foto">
+                <img src="img/imagenVela.png" alt="vela">
+            </div>
+        </div>
+
+        <!--Almohadillas-->
+        <div id="almohadillas" class="inventario">
+            <div class="producto">
+                <label class="etiqueta"></label>
+                <label id="cantidad">Cantidad</label>
+                <input type="number">
+            </div>
+            <div class="foto">
+                <img src="img/allmohadilla_ocular.png" alt="Almohadilla ocular">
+            </div>
+        </div>
+        <div id="almohadillas" class="inventario">
+            <div class="producto">
+                <label class="etiqueta"></label>
+                <label id="cantidad">Cantidad</label>
+                <input type="number">
+            </div>
+            <div class="foto">
+                <img src="img/almohadilla_cervical.png" alt="Almohadilla cervical">
+            </div>
+        </div>
+    </div>
+
+    <div id="carrito-flotante">
+        <h3>🛒 Tu pedido</h3>
+        <div id="lista-carrito"></div>
+        <a id="whatsapp-btn" href="#" target="_blank">Enviar por WhatsApp</a>
+    </div>
+
+    <footer>
+        <p id="copy">&copy; 2025 Aura Aromaterapias - Todos los derechos reservados</p>
+        <a href="https://www.instagram.com/next_level_technology_oficial/" id="nlt">
+            Made by Next Levels Technology
+        </a>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>
