@@ -3,12 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Aura aromaterapias</title>
+    <title>Pagina modelo</title>
     <link rel="stylesheet" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="referrer" content="no-referrer">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Security-Policy" content="
+    <meta http-equiv="Content-Security-Policy" content="    default-src 'none';
+    script-src 'self';
     style-src 'self' 'unsafe-inline';
     img-src 'self' data:;
     font-src 'self';
@@ -16,67 +17,116 @@
     base-uri 'none';
     form-action 'self';
     frame-ancestors 'none';
-    object-src 'none';">
+    object-src 'none';
+">
 </head>
 
-<body id="muestras">
-
-    <video autoplay muted loop id="background-video">
-        <source src="videos/relax.mp4" type="video/mp4">
-    </video>
-
-    <nav id="sideMenu">
-        <a href="index.html"><img src="img/Logo.jpeg" alt="Aura Aromaterapias"></a>
-        <a href="index.html">Inicio</a>
-        <a href="carga.html">Productos</a>
-        <a href="#nosotros">Sobre Nosotros</a>
-        <a href="#contacto">Contacto</a>
+<body>
+    <img id="cabecera" src="img/IMAGEN.png" alt="logo">
+    <nav>
+        <hr>
+        <a class="menu" href="index.html">Home</a>
+        <a class="menu" href="#nosotros">Nosotros</a>
+        <a class="menu" href="carga.html">Catálogo</a>
+        <hr>
     </nav>
-
-    <div class="content">
-        <a href="index.html"><img class="logo" src="img/Logo.jpeg" alt="Aura aromaterapias"></a>
-        <h1 id="titulo"></h1>
-        <p id="text1"></p>
-        <audio id="birds" loop>
-            <source src="videos/pajarillos.mp3" type="audio/mpeg">
-        </audio>
-
-        <button id="sound-btn">🔊 Activar sonido</button>
-
-        <button class="menu-btn" onclick="toggleMenu()">☰</button>
-
     </div>
-    <div id="nosotros">
-        <div>
-            <h2 id="mision"></h2>
-            <p id="parr1"></p>
-        </div>
-        <img src="img/imagenVela.png" alt="imagenVela">
-    </div>
-    <div id="nosotros">
-        <img src="img/imagenVela2.png" alt="imagenVela2">
-        <div>
-            <p id="parr2"></p>
-        </div>
-    </div>
-    <div>
-        <div id="nosotros">
-            <div>
-                <p id="parr3"></p>
+    <h1>Bienvenidos a la tienda de ropa - Cocó clothing</h1>
+    <h2>Vení y llevate las mejores prendas al mejor precio 😉</h2>
+    <div class="contenedor-carruseles">
+        <div class="carrusel1">
+            <div class="slides">
+                <div class="slide">
+                    <img src="img/buzo_canguro.jpg" alt="Imagen 1">
+                </div>
+                <div class="slide">
+                    <img src="img/buzo_corto.jpg" alt="Imagen 2">
+                </div>
+                <div class="slide">
+                    <img src="img/buzo_estampado.jpg" alt="Imagen 3">
+                </div>
             </div>
-            <img src="img/imagenVela3.png" alt="imagenVela">
+        </div>
+
+        <div class="carrusel2">
+            <div class="slides1">
+                <div class="slide">
+                    <img src="img/gorrito_hilo.jpg" alt="Imagen 1">
+                </div>
+                <div class="slide">
+                    <img src="img/pantalon_engomado.jpg" alt="Imagen 2">
+                </div>
+                <div class="slide">
+                    <img src="img/sueter_hilo.jpg" alt="Imagen 3">
+                </div>
+            </div>
+        </div>
+
+        <div class="carrusel3">
+            <div class="slides">
+                <div class="slide">
+                    <img src="img/sueter_hilo.jpg" alt="Imagen 1">
+                </div>
+                <div class="slide">
+                    <img src="img/buzo_canguro.jpg" alt="Imagen 2">
+                </div>
+                <div class="slide">
+                    <img src="img/buzo_corto.jpg" alt="Imagen 3">
+                </div>
+            </div>
+        </div>
+
+        <div class="carrusel4">
+            <div class="slides1">
+                <div class="slide">
+                    <img src="img/pantalon_engomado.jpg" alt="Imagen 1">
+                </div>
+                <div class="slide">
+                    <img src="img/buzo_estampado.jpg" alt="Imagen 2">
+                </div>
+                <div class="slide">
+                    <img src="img/buzo_corto.jpg" alt="Imagen 3">
+                </div>
+            </div>
         </div>
     </div>
-
+    <div id="cuadro1">
+        <div><img id="elementos_cuadro1" src="img/buzo_canguro.jpg" alt="pagina modelo"></div>
+        <div><img id="elementos_cuadro1" src="img/buzo_corto.jpg" alt="pagina modelo"></div>
+        <div><img id="elementos_cuadro1" src="img/buzo_estampado.jpg" alt="pagina modelo"></div>
+        <div><img id="elementos_cuadro1" src="img/pantalon_engomado.jpg" alt="pagina modelo"></div>
+    </div>
+    <a id="boton1" href="catalogo.html">Ir a Catálogo</a>
+    <hr>
+    <div id="nosotros">
+        <h2>Conócenos</h2>
+        <hr>
+        <p>En Cocó Clothing creemos que vestirse es una forma de decirle al mundo quién sos sin tener que hablar. ✨
+            Nacimos con la idea de ofrecer prendas que nos hagan sentir libres, auténticos y seguros de nuestro
+            estilo.<br></p>
+        <p>Nuestra misión es ofrecer piezas únicas y versátiles, pensadas para acompañarte en tu día a día y ayudarte a
+            destacar con confianza. <br></p>
+        <p>Nos inspiramos en las últimas tendencias, pero siempre buscamos darles un toque
+            especial que refleje nuestra esencia: fresca, actual y con personalidad.<br></p>
+        <p>Nos inspiran las tendencias, pero lo que más nos importa es que tu estilo hable por vos..<br>
+            En Cocó Clothing no vendemos solo ropa: compartimos una actitud. 💜</p>
+    </div>
+    <hr>
     <footer>
-        <p id="copy">&copy; 2025 Aura Aromaterapias - Todos los derechos reservados</p>
-        <a href="https://www.instagram.com/next_level_technology_oficial/" id="nlt">
+        <p id="copy">&copy; 2025 Cocó clothing - todos los derechos reservados</p>
+        <a href="https://www.instagram.com/next_level_technology_oficial/">
             Made by Next Levels Technology
         </a>
     </footer>
 
-    <script src="script.js" defer></script>
+    <a href="https://api.whatsapp.com/send?phone=3516829976&text=Hola,%20quiero%20hacer%20una%20consulta&#128516"
+        class="whatsapp-float" target="_blank" aria-label="Chat en WhatsApp">
+        <img src="img/WhatsApp.svg" alt="WhatsApp">
+    </a>
 
+    <a href="https://www.instagram.com/coco_clothingg/" class="instagram-float" target="_blank" aria-label="Instagram">
+        <img src="img/Instagram_icon.png" alt="Instagram">
+    </a>
 </body>
 
 </html>
