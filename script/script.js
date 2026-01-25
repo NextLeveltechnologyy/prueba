@@ -1,3 +1,7 @@
+function formatearPrecio(precio) {
+    return precio.toLocaleString("es-AR");
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     /* MENÚ LATERAL */
     const btnMenu = document.querySelector(".menu-btn");
@@ -46,22 +50,24 @@ async function cargarStock() {
     filas.forEach(fila => {
         if (!fila.trim()) return;
 
-        const [producto, color, talle, stock, precio, imagen] = fila.split(";");
+        const [tipo, genero, nombre, color, talle, stock, precio, imagen] = fila.split(";");
 
-        if (!data[producto]) {
-            data[producto] = {
-                nombre: producto,
+        if (!data[nombre]) {
+            data[nombre] = {
+                tipo,
+                genero,
+                nombre,
                 precio: Number(precio),
                 img: `img/${imagen}`,
                 variantes: {}
             };
         }
 
-        if (!data[producto].variantes[color]) {
-            data[producto].variantes[color] = {};
+        if (!data[nombre].variantes[color]) {
+            data[nombre].variantes[color] = {};
         }
 
-        data[producto].variantes[color][talle] = Number(stock);
+        data[nombre].variantes[color][talle] = Number(stock);
     });
 
     return Object.values(data);
@@ -78,25 +84,71 @@ document.addEventListener("DOMContentLoaded", async () => {
     const totalCarrito = document.getElementById("total-carrito");
     const whatsappBtn = document.getElementById("whatsapp-btn");
 
+    const filtroTipo = document.getElementById("filtro-tipo");
+    const filtroGenero = document.getElementById("filtro-genero");
+    const filtroColor = document.getElementById("filtro-color");
+    const filtroTalle = document.getElementById("filtro-talle");
+
     productos = await cargarStock();
+    cargarFiltros();
     renderInventario();
+
+    /* ================== FILTROS ================== */
+    function cargarFiltros() {
+        const tipos = new Set();
+        const colores = new Set();
+        const talles = new Set();
+
+        productos.forEach(p => {
+            tipos.add(p.tipo);
+            Object.entries(p.variantes).forEach(([color, ts]) => {
+                colores.add(color);
+                Object.keys(ts).forEach(t => talles.add(t));
+            });
+        });
+
+        tipos.forEach(t => filtroTipo.innerHTML += `<option value="${t}">${t}</option>`);
+        colores.forEach(c => filtroColor.innerHTML += `<option value="${c}">${c}</option>`);
+        talles.forEach(t => filtroTalle.innerHTML += `<option value="${t}">${t}</option>`);
+    }
 
     /* ================== INVENTARIO ================== */
     function renderInventario() {
         inventario.innerHTML = "";
 
+        const tipoF = filtroTipo.value;
+        const generoF = filtroGenero.value;
+        const colorF = filtroColor.value;
+        const talleF = filtroTalle.value;
+
         productos.forEach(prod => {
+
+            if (tipoF && prod.tipo !== tipoF) return;
+            if (generoF && prod.genero !== generoF) return;
+
+            let visible = false;
+
+            Object.entries(prod.variantes).forEach(([color, ts]) => {
+                if (colorF && color !== colorF) return;
+                Object.keys(ts).forEach(talle => {
+                    if (talleF && talle !== talleF) return;
+                    visible = true;
+                });
+            });
+
+            if (!visible) return;
+
             inventario.innerHTML += `
             <div class="inventario" data-nombre="${prod.nombre}">
-                <img src="${prod.img}" alt="${prod.nombre}">
+                <img src="${prod.img}">
                 <h4>${prod.nombre}</h4>
-                <p>$${prod.precio}</p>
+                <p>${prod.genero.toLowerCase()}</p>
+                <p class="producto-precio">$${formatearPrecio(prod.precio)}</p>
+
 
                 <select class="color">
                     <option value="">Color</option>
-                    ${Object.keys(prod.variantes).map(c =>
-                `<option value="${c}">${c}</option>`
-            ).join("")}
+                    ${Object.keys(prod.variantes).map(c => `<option value="${c}">${c}</option>`).join("")}
                 </select>
 
                 <select class="talle" disabled>
@@ -104,35 +156,41 @@ document.addEventListener("DOMContentLoaded", async () => {
                 </select>
 
                 <p class="stock-info"></p>
+
+                <input type="number" class="cantidad" min="1" value="1" disabled>
+
                 <button class="agregar">Agregar</button>
             </div>
             `;
         });
     }
 
+    [filtroTipo, filtroGenero, filtroColor, filtroTalle]
+        .forEach(f => f.addEventListener("change", renderInventario));
+
     /* ================== COLOR → TALLES ================== */
     document.addEventListener("change", e => {
 
         if (e.target.classList.contains("color")) {
             const box = e.target.closest(".inventario");
-            const talleSel = box.querySelector(".talle");
-            const stockInfo = box.querySelector(".stock-info");
-
             const prod = productos.find(p => p.nombre === box.dataset.nombre);
             const color = e.target.value;
 
+            const talleSel = box.querySelector(".talle");
+            const cantidad = box.querySelector(".cantidad");
+            const stockInfo = box.querySelector(".stock-info");
+
             talleSel.innerHTML = `<option value="">Talle</option>`;
-            talleSel.disabled = true;
+            cantidad.disabled = true;
             stockInfo.textContent = "";
 
             if (!color) return;
 
-            Object.entries(prod.variantes[color]).forEach(([talle, stock]) => {
+            Object.entries(prod.variantes[color]).forEach(([t, s]) => {
                 talleSel.innerHTML += `
-                    <option value="${talle}" ${stock === 0 ? "disabled" : ""}>
-                        ${talle} (${stock})
-                    </option>
-                `;
+                    <option value="${t}" ${s === 0 ? "disabled" : ""}>
+                        ${t} (${s})
+                    </option>`;
             });
 
             talleSel.disabled = false;
@@ -144,8 +202,13 @@ document.addEventListener("DOMContentLoaded", async () => {
             const color = box.querySelector(".color").value;
             const talle = e.target.value;
 
-            box.querySelector(".stock-info").textContent =
-                `Stock disponible: ${prod.variantes[color][talle]}`;
+            const stock = prod.variantes[color][talle];
+            const cantidad = box.querySelector(".cantidad");
+
+            box.querySelector(".stock-info").textContent = `Stock disponible: ${stock}`;
+            cantidad.max = stock;
+            cantidad.value = stock > 0 ? 1 : 0;
+            cantidad.disabled = stock === 0;
         }
     });
 
@@ -157,34 +220,23 @@ document.addEventListener("DOMContentLoaded", async () => {
         const prod = productos.find(p => p.nombre === box.dataset.nombre);
         const color = box.querySelector(".color").value;
         const talle = box.querySelector(".talle").value;
+        const cant = Number(box.querySelector(".cantidad").value);
 
-        if (!color || !talle) {
-            alert("Seleccioná color y talle");
+        if (!color || !talle || cant <= 0) return;
+
+        if (prod.variantes[color][talle] < cant) {
+            alert("No hay stock suficiente");
             return;
         }
 
-        if (prod.variantes[color][talle] <= 0) {
-            alert("Sin stock");
-            return;
-        }
+        prod.variantes[color][talle] -= cant;
 
-        prod.variantes[color][talle]--;
-
-        const item = carrito.find(
-            p => p.nombre === prod.nombre && p.color === color && p.talle === talle
+        const item = carrito.find(i =>
+            i.nombre === prod.nombre && i.color === color && i.talle === talle
         );
 
-        if (item) {
-            item.cantidad++;
-        } else {
-            carrito.push({
-                nombre: prod.nombre,
-                color,
-                talle,
-                precio: prod.precio,
-                cantidad: 1
-            });
-        }
+        item ? item.cantidad += cant :
+            carrito.push({ nombre: prod.nombre, color, talle, precio: prod.precio, cantidad: cant });
 
         renderCarrito();
         renderInventario();
@@ -194,7 +246,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     function renderCarrito() {
         listaCarrito.innerHTML = "";
         let total = 0;
-        let mensaje = "Hola Cocó Clothing! Quiero este pedido:%0A";
+        let mensaje = "Hola cocó clothing! Quiero hacer este pedido:%0A";
 
         carrito.forEach((item, i) => {
             const subtotal = item.precio * item.cantidad;
@@ -206,21 +258,20 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <button class="menos">➖</button>
                 ${item.nombre} ${item.color} ${item.talle} x${item.cantidad}
                 <button class="mas">➕</button>
-                $${subtotal}
-                <button class="borrar-item">🗑️</button>
+                $${formatearPrecio(subtotal)}
+                <button class="borrar">🗑️</button>
             `;
 
             div.querySelector(".mas").onclick = () => modificarCantidad(item, 1);
             div.querySelector(".menos").onclick = () => modificarCantidad(item, -1);
-            div.querySelector(".borrar-item").onclick = () => eliminarItem(i);
+            div.querySelector(".borrar").onclick = () => eliminarItem(i);
 
             listaCarrito.appendChild(div);
-            mensaje += `• ${item.nombre} ${item.color} ${item.talle} x${item.cantidad} = $${subtotal}%0A`;
+
+            mensaje += `• ${item.nombre} ${item.color} ${item.talle} x${item.cantidad} = $${formatearPrecio(subtotal)}%0A`;
         });
 
-        totalCarrito.textContent = `Total: $${total}`;
-        mensaje += `%0ATotal: $${total}`;
-
+        totalCarrito.textContent = `Total: $${formatearPrecio(total)}`;
         whatsappBtn.href = `https://wa.me/3516829976?text=${mensaje}`;
     }
 
@@ -240,17 +291,18 @@ document.addEventListener("DOMContentLoaded", async () => {
         renderInventario();
     }
 
-    function eliminarItem(i) {
-        const item = carrito[i];
+    function eliminarItem(index) {
+        const item = carrito[index];
         const prod = productos.find(p => p.nombre === item.nombre);
 
         prod.variantes[item.color][item.talle] += item.cantidad;
-        carrito.splice(i, 1);
+        carrito.splice(index, 1);
 
         renderCarrito();
         renderInventario();
     }
 
+    /* ================== ABRIR / CERRAR ================== */
     abrir.onclick = () => carritoDiv.style.display = "block";
     cerrar.onclick = () => carritoDiv.style.display = "none";
 });

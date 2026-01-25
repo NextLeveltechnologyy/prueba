@@ -26,25 +26,45 @@
 
     <!-- MENÚ LATERAL -->
     <nav id="sideMenu">
-        <img src="img/IMAGEN.png" alt="logo">
+        <a href="index.html"><img src="img/IMAGEN.png" alt="logo"></a>
         <a href="index.html">Inicio</a>
     </nav>
 
     <!-- CABECERA -->
-    <img id="cabecera" src="img/IMAGEN.png" alt="logo">
+    <a href="index.html"><img id="cabecera" src="img/IMAGEN.png" alt="logo"></a>
     <hr>
 
+    <div id="filtros">
+        <select id="filtro-genero">
+            <option value="">Genero</option>
+            <option value="femenino">Femenino</option>
+            <option value="masculino">Masculino</option>
+            <option value="unisex">Unisex</option>
+        </select>
+        <select id="filtro-tipo">
+            <option value="">Productos</option>
+        </select>
+
+        <select id="filtro-color">
+            <option value="">Color</option>
+        </select>
+
+        <select id="filtro-talle">
+            <option value="">Talle</option>
+        </select>
+    </div>
+
+
+    <!-- INVENTARIO -->
     <div id="inventario_contenedor"></div>
 
     <button id="abrirCarrito">🛒</button>
 
     <div id="carrito-flotante" style="display:none;">
         <button id="cerrarCarrito">X</button>
-        <h3>Carrito</h3>
-
+        <h3>Tu carrito</h3>
         <div id="lista-carrito"></div>
         <p id="total-carrito"></p>
-
         <a id="whatsapp-btn" target="_blank">Enviar pedido</a>
     </div>
     <hr>

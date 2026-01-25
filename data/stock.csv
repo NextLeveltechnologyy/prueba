@@ -1,6 +1,18 @@
-﻿producto;color;talle;stock;precio;imagen
-Buzo Canguro;Negro;S;2;12000;buzo_canguro
-Buzo Canguro;Negro;M;1;12000;buzo_canguro
-Buzo Canguro;Gris;L;3;12000;buzo_canguro
-Buzo corto;Azul;M;2;9500;buzo_corto
-Buzo corto;Rojo;S;1;9500;buzo_corto
+﻿tipo;genero;producto;color;talle;stock;precio;imagen
+Buzo;masculino;Buzo Canguro;Negro;S;2;12000;buzo_canguro.jpg
+Buzo;masculino;Buzo Canguro;Negro;M;1;12000;buzo_canguro.jpg
+Buzo;masculino;Buzo Canguro;Gris;L;3;12000;buzo_canguro.jpg
+Buzo;masculino;Buzo corto;Azul;M;2;9500;buzo_corto.jpg
+Buzo;femenino;Buzo corto;Rojo;S;1;9500;buzo_corto.jpg
+Buzo;unisex;Buzo estampado;Negro;S;2;15000;buzo_estampado.jpg
+Buzo;unisex;Buzo estampado;Negro;M;1;15000;buzo_estampado.jpg
+Buzo;unisex;Buzo estampado;Negro;L;4;15000;buzo_estampado.jpg
+Buzo;unisex;Buzo estampado;Negro;XL;0;15000;buzo_estampado.jpg
+Gorrito;unisex;Gorrito hilo;Gris;único;1;10000;gorrito_hilo.jpg
+Gorrito;unisex;Gorrito hilo;Rojo;único;1;10000;gorrito_hilo.jpg
+Gorrito;unisex;Gorrito hilo;Verde;único;1;10000;gorrito_hilo.jpg
+Pantalón;femenino;Pantalón engomado;Negro;38;5;25000;pantalon_engomado.jpg
+Pantalón;femenino;Pantalón engomado;Negro;40;2;25000;pantalon_engomado.jpg
+Pantalón;femenino;Pantalón engomado;Blanco;40;2;25000;pantalon_engomado.jpg
+Sueter;femenino;Sueter hilo;Negro;S;2;12000;sueter_hilo.jpg
+Sueter;femenino;Sueter hilo;Blanco;M;3;12000;sueter_hilo.jpg
