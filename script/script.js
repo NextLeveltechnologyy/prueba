@@ -1,4 +1,12 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', () => {
+    /* MENÚ LATERAL */
+    const btnMenu = document.querySelector(".menu-btn");
+    const sideMenu = document.getElementById("sideMenu");
+
+    btnMenu.addEventListener("click", () => {
+        sideMenu.classList.toggle("active");
+    });
+
     const contenedores = document.querySelectorAll("#inventario_contenedor > div");
     let visibles = 6; // cantidad inicial de divs visibles
 
@@ -24,53 +32,261 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+async function cargarStock() {
+    const res = await fetch("data/stock.csv");
+    const texto = await res.text();
+    const filas = texto.split("\n").slice(1);
+
+    const productos = {};
+
+    filas.forEach(fila => {
+        if (!fila.trim()) return;
+
+        const [nombre, color, talle, stock, precio, imagen] = fila.split(",");
+
+        if (!productos[nombre]) {
+            productos[nombre] = {
+                nombre,
+                precio: Number(precio),
+                img: `img/${imagen}.jpeg`,
+                variantes: {}
+            };
+        }
+
+        if (!productos[nombre].variantes[color]) {
+            productos[nombre].variantes[color] = {};
+        }
+
+        productos[nombre].variantes[color][talle] = Number(stock);
+    });
+
+    return Object.values(productos);
+}
+
+
 //Carrito
-document.addEventListener("DOMContentLoaded", () => {
-    const carritoLista = document.getElementById("lista-carrito");
-    const botonWhatsapp = document.getElementById("whatsapp-btn");
+let productos = [];
+const carrito = [];
 
-    function actualizarCarrito() {
-        carritoLista.innerHTML = "";
-        let mensaje = "Hola cocó clothing! quiero hacer este pedido:%0A";
+/* ================== CARGAR STOCK DESDE CSV ================== */
+async function cargarStock() {
+    const res = await fetch("data/stock.csv");
+    const texto = await res.text();
+    const filas = texto.split("\n").slice(1);
 
-        document.querySelectorAll("#inventario_contenedor > div").forEach((producto) => {
-            const nombre = producto.querySelector("label").textContent.trim();
-            const checkbox = producto.querySelector("input[type='checkbox']");
+    const data = {};
 
-            if (checkbox.checked) {
-                const item = document.createElement("div");
-                item.classList.add("item-carrito");
-                item.textContent = nombre;
-                carritoLista.appendChild(item);
+    filas.forEach(fila => {
+        if (!fila.trim()) return;
 
-                mensaje += `• ${nombre}%0A`;
-            }
+        const [nombre, color, talle, stock, precio, imagen] =
+            fila.split(",").map(v => v.trim());
+
+
+        if (!data[nombre]) {
+            data[nombre] = {
+                nombre,
+                precio: Number(precio),
+                img: `img/${imagen}.jpg`,
+                variantes: {}
+            };
+        }
+
+        if (!data[nombre].variantes[color]) {
+            data[nombre].variantes[color] = {};
+        }
+
+        data[nombre].variantes[color][talle] = Number(stock);
+    });
+
+    return Object.values(data);
+}
+
+/* ================== DOM READY ================== */
+document.addEventListener("DOMContentLoaded", async () => {
+
+    const inventario = document.getElementById("inventario_contenedor");
+    const carritoDiv = document.getElementById("carrito-flotante");
+    const abrir = document.getElementById("abrirCarrito");
+    const cerrar = document.getElementById("cerrarCarrito");
+    const listaCarrito = document.getElementById("lista-carrito");
+    const totalCarrito = document.getElementById("total-carrito");
+    const whatsappBtn = document.getElementById("whatsapp-btn");
+
+    productos = await cargarStock();
+    renderInventario();
+
+    /* ================== INVENTARIO ================== */
+    function renderInventario() {
+        inventario.innerHTML = "";
+
+        productos.forEach(prod => {
+            inventario.innerHTML += `
+        <div class="inventario" data-nombre="${prod.nombre}">
+          <img src="${prod.img}">
+          <h4>${prod.nombre}</h4>
+          <p>$${prod.precio}</p>
+
+          <select class="color">
+            <option value="">Color</option>
+            ${Object.keys(prod.variantes).map(c =>
+                `<option value="${c}">${c}</option>`
+            ).join("")}
+          </select>
+
+          <select class="talle" disabled>
+            <option value="">Talle</option>
+          </select>
+
+          <p class="stock-info"></p>
+
+          <button class="agregar">Agregar</button>
+        </div>
+      `;
         });
-
-        botonWhatsapp.href = `https://wa.me/3516829976?text=${mensaje}`;
     }
 
-    // Llamar a actualizarCarrito cada vez que cambie un checkbox
-    document.querySelectorAll("#inventario_contenedor input[type='checkbox']").forEach((cb) => {
-        cb.addEventListener("change", actualizarCarrito);
+    /* ================== COLOR → TALLES ================== */
+    document.addEventListener("change", e => {
+        if (e.target.classList.contains("color")) {
+            const box = e.target.closest(".inventario");
+            talleSel.innerHTML = `<option value="">Talle</option>`;
+            talleSel.disabled = true;
+            stockInfo.textContent = "";
+            box.querySelector(".talle").value = "";
+            const stockInfo = box.querySelector(".stock-info");
+            const prod = productos.find(p => p.nombre === box.dataset.nombre);
+            const color = e.target.value;
+
+            talleSel.innerHTML = `<option value="">Talle</option>`;
+            talleSel.disabled = true;
+            stockInfo.textContent = "";
+
+            if (!color) return;
+
+            Object.entries(prod.variantes[color]).forEach(([talle, stock]) => {
+                talleSel.innerHTML += `
+          <option value="${talle}" ${stock === 0 ? "disabled" : ""}>
+            ${talle} (${stock})
+          </option>
+        `;
+            });
+
+            talleSel.disabled = false;
+        }
+
+        if (e.target.classList.contains("talle")) {
+            const box = e.target.closest(".inventario");
+            const prod = productos.find(p => p.nombre === box.dataset.nombre);
+            const color = box.querySelector(".color").value;
+            const talle = e.target.value;
+
+            box.querySelector(".stock-info").textContent =
+                `Stock disponible: ${prod.variantes[color][talle]}`;
+        }
     });
+
+    /* ================== AGREGAR AL CARRITO ================== */
+    document.addEventListener("click", e => {
+        if (!e.target.classList.contains("agregar")) return;
+
+        const box = e.target.closest(".inventario");
+        const prod = productos.find(p => p.nombre === box.dataset.nombre);
+        const color = box.querySelector(".color").value;
+        const talle = box.querySelector(".talle").value;
+
+        if (!color || !talle) {
+            alert("Seleccioná color y talle");
+            return;
+        }
+
+        if (prod.variantes[color][talle] <= 0) {
+            alert("Sin stock");
+            return;
+        }
+
+        prod.variantes[color][talle]--;
+
+        const item = carrito.find(
+            p => p.nombre === prod.nombre && p.color === color && p.talle === talle
+        );
+
+        item ? item.cantidad++ : carrito.push({
+            nombre: prod.nombre,
+            color,
+            talle,
+            precio: prod.precio,
+            cantidad: 1
+        });
+
+        renderCarrito();
+        renderInventario();
+    });
+
+    /* ================== CARRITO ================== */
+    function renderCarrito() {
+        listaCarrito.innerHTML = "";
+        let total = 0;
+        let mensaje = "Hola cocó clothing! Quiero hacer este pedido:%0A";
+
+        carrito.forEach((item, i) => {
+            const subtotal = item.precio * item.cantidad;
+            total += subtotal;
+
+            const div = document.createElement("div");
+            div.className = "item-carrito";
+            div.innerHTML = `
+        <button class="menos">➖</button>
+        ${item.nombre} ${item.color} ${item.talle} x${item.cantidad}
+        <button class="mas">➕</button>
+        $${subtotal}
+        <button class="borrar-item">🗑️</button>
+      `;
+
+            div.querySelector(".mas").onclick = () => modificarCantidad(item, 1);
+            div.querySelector(".menos").onclick = () => modificarCantidad(item, -1);
+            div.querySelector(".borrar-item").onclick = () => eliminarItem(i);
+
+            listaCarrito.appendChild(div);
+
+            mensaje += `• ${item.nombre} ${item.color} ${item.talle} x${item.cantidad} = $${subtotal}%0A`;
+        });
+
+        totalCarrito.textContent = `Total: $${total}`;
+        mensaje += `%0ATotal: $${total}`;
+
+        whatsappBtn.href = `https://wa.me/3516829976?text=${mensaje}`;
+    }
+
+    function modificarCantidad(item, cambio) {
+        const prod = productos.find(p => p.nombre === item.nombre);
+
+        if (cambio === 1 && prod.variantes[item.color][item.talle] <= 0) return;
+
+        item.cantidad += cambio;
+        prod.variantes[item.color][item.talle] -= cambio;
+
+        if (item.cantidad === 0) {
+            carrito.splice(carrito.indexOf(item), 1);
+        }
+
+        renderCarrito();
+        renderInventario();
+    }
+
+    function eliminarItem(i) {
+        const item = carrito[i];
+        const prod = productos.find(p => p.nombre === item.nombre);
+
+        prod.variantes[item.color][item.talle] += item.cantidad;
+        carrito.splice(i, 1);
+
+        renderCarrito();
+        renderInventario();
+    }
+
+    /* ================== ABRIR / CERRAR CARRITO ================== */
+    abrir.onclick = () => carritoDiv.style.display = "block";
+    cerrar.onclick = () => carritoDiv.style.display = "none";
+
 });
-
-//texto en imágenes
-const labels = document.querySelectorAll('#inventario_contenedor .etiqueta');
-
-const textos = [
-    'Buzo canguro\n Talle M\n Color beige',
-    'Buzo corto\n Talle único\n Color negro',
-    'Buzo estampado\n Talle M\n Color negro',
-    'gorrito de hilo\n Talle único\n Color gris',
-    'Buzo canguro\n Talle M\n Color beige',
-    'Camisa disponible\n Talle único\n Color negro',
-    'Pantalón disponible\n Talle M\n Color negro',
-    'gorrito de hilo\n Talle único\n Color gris'
-];
-
-labels.forEach((label, index) => {
-    label.innerHTML = textos[index].replace(/\n/g, '<br>');
-});
-

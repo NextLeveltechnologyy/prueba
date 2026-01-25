@@ -4,95 +4,60 @@
 <head>
     <meta charset="UTF-8">
     <title>Cocó Clothing</title>
-    <link rel="stylesheet" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="referrer" content="no-referrer">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Security-Policy" content="    default-src 'none';
-    script-src 'self';
-    style-src 'self' 'unsafe-inline';
-    img-src 'self' data:;
-    font-src 'self';
-    media-src 'self';
-    base-uri 'none';
-    form-action 'self';
-    frame-ancestors 'none';
-    object-src 'none';
-">
+    <meta http-equiv="Content-Security-Policy" content="
+            default-src 'none';
+            script-src 'self';
+            style-src 'self' 'unsafe-inline';
+            img-src 'self' data:;
+            font-src 'self';
+            base-uri 'none';
+            form-action 'self';
+            frame-ancestors 'none';
+          ">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <img id="cabecera" src="img/IMAGEN.png" alt="logo">
-    <nav>
-        <hr>
-        <a class="menu" href="index.html">Home</a>
-        <a class="menu" href="catalogo.html">Catálogo</a>
-        <hr>
-    </nav>
-    <div id="inventario_contenedor">
-        <div class="inventario">
-            <img src="img/buzo_canguro.jpg" alt="buzo_canguro">
-            <label class="etiqueta"></label>
-            <input type="checkbox">
-        </div>
-        <div class="inventario">
-            <img src="img/buzo_corto.jpg" alt="buzo_corto">
-            <label class="etiqueta"></label>
-            <input type="checkbox">
-        </div>
-        <div class="inventario">
-            <img src="img/buzo_estampado.jpg" alt="buzo_estampado">
-            <label class="etiqueta"></label>
-            <input type="checkbox">
-        </div>
-        <div class="inventario">
-            <img src="img/gorrito_hilo.jpg" alt="gorrito_hilo">
-            <label class="etiqueta"></label>
-            <input type="checkbox">
-        </div>
-        <div class="inventario">
-            <img src="img/buzo_canguro.jpg" alt="buzo_canguro">
-            <label class="etiqueta"></label>
-            <input type="checkbox">
-        </div>
-        <div class="inventario">
-            <img src="img/buzo_corto.jpg" alt="buzo_corto">
-            <label class="etiqueta"></label>
-            <input type="checkbox">
-        </div>
-        <div class="inventario">
-            <img src="img/buzo_estampado.jpg" alt="buzo_estampado">
-            <label class="etiqueta"></label>
-            <input type="checkbox">
-        </div>
-        <div class="inventario">
-            <img src="img/gorrito_hilo.jpg" alt="gorrito_hilo">
-            <label class="etiqueta"></label>
-            <input type="checkbox">
-        </div>
-    </div>
-    <div id="carrito-flotante">
-        <h3>🛒 Tu pedido</h3>
-        <div id="lista-carrito"></div>
-        <a id="whatsapp-btn" href="#" target="_blank">Enviar por WhatsApp</a>
-    </div>
 
+    <!-- BOTÓN MENÚ -->
+    <button class="menu-btn">☰</button>
+
+    <!-- MENÚ LATERAL -->
+    <nav id="sideMenu">
+        <img src="img/IMAGEN.png" alt="logo">
+        <a href="index.html">Inicio</a>
+    </nav>
+
+    <!-- CABECERA -->
+    <img id="cabecera" src="img/IMAGEN.png" alt="logo">
     <hr>
+
+    <div id="inventario_contenedor"></div>
+
+    <button id="abrirCarrito">🛒</button>
+
+    <div id="carrito-flotante" style="display:none;">
+        <button id="cerrarCarrito">X</button>
+        <h3>Carrito</h3>
+
+        <div id="lista-carrito"></div>
+        <p id="total-carrito"></p>
+
+        <a id="whatsapp-btn" target="_blank">Enviar pedido</a>
+    </div>
+    <hr>
+
     <footer>
         <p id="copy">&copy; 2025 Cocó clothing - todos los derechos reservados</p>
-        <a href="https://www.instagram.com/next_level_technology_oficial/">
-            Made by Next Levels Technology
-        </a>
+        <a id="NLT" href="https://www.instagram.com/next_level_technology_oficial/"> Made by Next Levels Technology </a>
     </footer>
-
     <a href="https://api.whatsapp.com/send?phone=3516829976&text=Hola,%20quiero%20hacer%20una%20consulta&#128516"
         class="whatsapp-float" target="_blank" aria-label="Chat en WhatsApp">
-        <img src="img/WhatsApp.svg" alt="WhatsApp">
-    </a>
-
+        <img src="img/WhatsApp.svg" alt="WhatsApp"> </a>
     <a href="https://www.instagram.com/coco_clothingg/" class="instagram-float" target="_blank" aria-label="Instagram">
-        <img src="img/Instagram_icon.png" alt="Instagram">
-    </a>
+        <img src="img/Instagram_icon.png" alt="Instagram"> </a>
 
     <script src="script/script.js"></script>
 </body>

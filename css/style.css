@@ -2,16 +2,19 @@
     font-family: cursive
 }
 
+/*conenedor de video comienzo*/
 .video-container {
     position: absolute;
     left: 25%;
 }
 
+/*video intro*/
 .video {
     width: 70%;
     height: 100%;
 }
 
+/*titulos y subtitulos*/
 h1,
 h2 {
     margin: 0;
@@ -19,37 +22,73 @@ h2 {
     font-size: 3vw;
 }
 
+/*subtitulos*/
 h2 {
     font-size: 2vw;
     margin-bottom: 1vw;
 }
 
+/*texto*/
 #nosotros {
     font-size: 2vw;
     margin: 0 1vw 1vw 1vw;
     text-align: center;
 }
 
+/*subtitulo texto*/
 #nosotros h2 {
     font-size: 3vw;
 }
 
+/*logo*/
 #cabecera {
-    width: 18vw;
+    width: 20vw;
+    height: 10vw;
     display: flex;
     justify-self: center;
-    z-index: 100;
 }
 
+/*navegacion*/
 nav {
-    position: sticky;
+    position: fixed;
+    left: -190vw;
     top: 0;
-    color: white;
-    background-color: white;
-    justify-self: center;
-    z-index: 100;
+    height: 100%;
+    width: 18vw;
+    background: rgba(255, 255, 255, 0.8);
+    padding-top: 7vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: left 0.4s ease;
+    z-index: 9;
 }
 
+/*boton de menu*/
+.menu-btn {
+    position: fixed;
+    left: 3.1vw;
+    background: rgba(255, 255, 255, 0.8);
+    color: black;
+    padding: 1vw 1vw;
+    font-size: 3vw;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 50%;
+}
+
+nav.active {
+    left: 0;
+}
+
+/*imagen del nav*/
+nav img {
+    width: 18vw;
+    height: 12vw;
+    margin-bottom: 3vw;
+}
+
+/*texto nav*/
 nav a,
 footer a {
     color: black;
@@ -57,22 +96,7 @@ footer a {
     font-size: 2vw;
 }
 
-nav a:hover,
-footer a:hover,
-#boton1:hover {
-    color: white;
-    background: linear-gradient(90deg, rgb(109, 109, 109) 0%, rgb(196, 196, 196) 50%, rgb(109, 109, 109) 100%);
-    border-style: solid;
-    transition: 0.3s ease, color 0.3s ease;
-    transform: scale(1.12);
-}
-
-.menu {
-    color: black;
-    padding: 0vw 11vw;
-}
-
-
+/*lineas*/
 hr {
     width: 100%;
     height: 0.1vw;
@@ -185,6 +209,7 @@ hr {
     color: black;
 }
 
+/*contenedor de inventario*/
 #inventario_contenedor {
     display: flex;
     gap: 1vw;
@@ -193,18 +218,17 @@ hr {
     font-size: 2.2vw;
 }
 
-.inventario {
-    box-shadow: 1px 1px 10px;
-}
-
+/*cuadro de cada producto*/
 .inventario {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     border-radius: 5%;
+    border: solid 1px;
 }
 
+/*imagen de cada producto*/
 .inventario img {
     width: 30vw;
     height: 100%;
@@ -215,19 +239,21 @@ hr {
     margin-top: 1vw;
 }
 
+/*boton de agregar a carrito*/
 .inventario input {
     width: 4vw;
     height: 4vw;
     margin: 1vw;
 }
 
+/*logos flotantes*/
 .whatsapp-float,
 .instagram-float {
     position: fixed;
-    width: 6vw;
-    height: 6vw;
+    width: 5vw;
+    height: 5vw;
     bottom: 2vw;
-    right: 5vw;
+    right: 3.2vw;
     background-color: #25D366;
     color: white;
     border-radius: 50vw;
@@ -244,7 +270,7 @@ hr {
 .instagram-float {
     background-color: #E1306C;
     transition: transform 0.3s ease;
-    right: 13vw;
+    bottom: 8vw;
 }
 
 .whatsapp-float:hover,
@@ -254,29 +280,8 @@ hr {
 
 .whatsapp-float img,
 .instagram-float img {
-    width: 4vw;
-    height: 4vw;
-}
-
-form {
-    justify-items: center;
-    font-size: 2vw;
-    text-align: center;
-}
-
-input,
-textarea {
-    width: 35vw;
-    border-radius: 4px;
-    text-align: center;
-    transition: 0.3s ease, transform 0.2s ease;
-    font-size: 1.5vw;
-}
-
-input:focus,
-textarea:focus {
-    background-color: rgba(255, 255, 255, 0.2);
-    transform: scale(1.02);
+    width: 3vw;
+    height: 3vw;
 }
 
 #boton {
@@ -295,6 +300,7 @@ textarea:focus {
     background: linear-gradient(90deg, rgb(136, 136, 136) 0%, rgb(0, 0, 0) 50%, rgb(136, 136, 136) 100%);
 }
 
+/*pie*/
 footer {
     color: black;
     justify-items: center;
@@ -307,12 +313,35 @@ footer {
     margin-bottom: 2px;
 }
 
+#NLT {
+    font-size: 2vw;
+}
+
+/*boton abre carrito*/
+#abrirCarrito {
+    position: fixed;
+    background: rgba(255, 255, 255, 0.8);
+    top: 1.5vw;
+    right: 3.2vw;
+    border-radius: 10px;
+    z-index: 90;
+    font-size: 4vw;
+}
+
+/*boton cierra carrito*/
+#cerrarCarrito {
+    background: rgba(229, 229, 229, 0.8);
+    width: 5vw;
+    height: 5vw;
+    margin: 1vw 0 0 1vw;
+    border-radius: 40%;
+}
+
 #carrito-flotante {
     position: fixed;
-    bottom: 9vw;
-    right: 1.5vw;
-    width: 20vw;
-    max-height: 30vw;
+    top: 1vw;
+    width: 96%;
+    height: 95%;
     background: white;
     border: 2px solid #ccc;
     border-radius: 10px;
@@ -323,143 +352,132 @@ footer {
 }
 
 #carrito-flotante h3 {
-    margin: 1vw 0;
-    font-size: 2.5vw;
+    position: relative;
+    left: 23vw;
+    font-size: 2.3vw;
     text-align: center;
 }
 
-.item-carrito {
-    border-bottom: 0.5vw solid #eee;
-    padding: 0.2vw 0;
-    font-size: 2vw;
+#inventario_contenedor {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 10px;
 }
 
+.inventario {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.inventario img {
+    width: 100%;
+}
+
+.item-carrito {
+    position: relative;
+    top: 8vw;
+    padding: 0.2vw 0;
+    font-size: 2.5vw;
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+}
+
+#total-carrito {
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 3vw;
+}
+
+select {
+    margin-top: 5px;
+    width: 100%;
+}
+
+.agregar {
+    margin: 1vw;
+    color: white;
+    background-color: rgb(79, 79, 79);
+    padding: 0.7vw;
+    border-radius: 10px;
+}
+
+.borrar-item {
+    font-size: 2vw;
+    margin-left: 2vw;
+    background: none;
+    cursor: pointer;
+}
+
+/*boton whatsapp carrito*/
 #whatsapp-btn {
     display: block;
-    margin: 0 1.2vw;
+    position: absolute;
+    top: 2vw;
+    right: 2vw;
     padding: 1.3vw;
     background: #25D366;
     color: white;
     text-align: center;
-    border-radius: 5px;
+    border-radius: 15px;
     text-decoration: none;
     font-weight: bold;
 }
 
-#whatsapp-btn:hover {
-    background: #20b358;
+/*botones*/
+button {
+    border-style: none;
+    cursor: pointer;
 }
 
-/*pantallas chicas*/
-@media (max-width:900px) {
-    .video-container {
-        left: 15%;
-    }
+button:hover {
+    transition: 0.3s ease, color 0.3s ease;
+    transform: scale(1.2);
+}
 
-    .video {
-        width: 80%;
-        height: 100%;
-    }
+.inventario {
+    border: 1px solid #ddd;
+    padding: 1vw;
+    margin: 2vw;
+    border-radius: 12px;
+    max-width: 300px;
+}
 
-    h1,
-    h2 {
-        font-size: 4vw;
-    }
+.inventario img {
+    width: 100%;
+    border-radius: 10px;
+}
 
-    h2 {
-        font-size: 3.5vw;
-    }
+.stock-info {
+    font-size: 1.8vw;
+    color: #555;
+}
 
-    #nosotros {
-        font-size: 3.5vw;
-    }
+select:disabled {
+    background: #eee;
+}
 
-    #nosotros h2 {
-        font-size: 4vw;
-    }
+.item-carrito {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1vw;
+}
 
-    #cabecera {
-        width: 30vw;
-    }
 
-    nav a,
-    footer a {
-        font-size: 4vw;
-    }
+.content,
+.content2 {
+    background: rgba(0, 0, 0, 0.4);
+    text-align: center;
+    padding: 1vw;
+    box-shadow: -2px 10px 10px black;
+}
 
-    .menu {
-        padding: 0vw 7.5vw;
-    }
-
-    #boton1 {
-        margin-top: -35%;
-        margin-left: 41%;
-    }
-
-    .etiqueta {
-        font-size: 3.5vw;
-    }
-
-    #inventario_contenedor {
-        gap: 2vw
-    }
-
-    .inventario img {
-        width: 40vw;
-        height: 100%;
-    }
-
-    .whatsapp-float,
-    .instagram-float {
-        width: 8vw;
-        height: 8vw;
-        bottom: 4vw;
-        right: 4vw;
-        font-size: 5vw;
-    }
-
-    .instagram-float {
-        right: 15vw;
-    }
-
-    .whatsapp-float:hover,
-    .instagram-float:hover {
-        transform: scale(1.1);
-    }
-
-    .whatsapp-float img,
-    .instagram-float img {
-        width: 5vw;
-        height: 5vw;
-    }
-
-    footer {
-        font-size: 3vw;
-    }
-
-    #carrito-flotante {
-        bottom: 13vw;
-        right: 1.5vw;
-        width: 20vw;
-        max-height: 30vw;
-        border-radius: 10px;
-        padding: 10px;
-    }
-
-    #carrito-flotante h3 {
-        margin: 1vw 0;
-        font-size: 3vw;
-    }
-
-    .item-carrito {
-        padding: 0.1vw 0;
-        font-size: 3vw;
-    }
-
-    #whatsapp-btn {
-        margin: 0 1.2vw;
-        padding: 1.3vw;
-    }
+/*posicion mouse nav y pie*/
+nav a:hover,
+footer a:hover,
+#NLT:hover,
+#whatsapp-btn:hover {
+    transition: 0.3s ease, color 0.3s ease;
+    transform: scale(1.1);
 }
 
 /*pantallas grandes*/
@@ -491,7 +509,7 @@ footer {
     }
 
     #cabecera {
-        width: 10vw;
+        width: 2vw;
     }
 
     nav a,
@@ -585,9 +603,6 @@ footer {
         bottom: 8vw;
         right: 1.5vw;
         width: 15vw;
-        max-height: 30vw;
-        border-radius: 10px;
-        padding: 10px;
     }
 
     #carrito-flotante h3 {
@@ -601,7 +616,124 @@ footer {
     }
 
     #whatsapp-btn {
-        margin: 0 1.2vw;
+        margin: 0 1.5vw;
         padding: 1.3vw;
+    }
+}
+
+/*pantallas chicas*/
+@media (max-width:900px) {
+    .video-container {
+        left: 15%;
+    }
+
+    .video {
+        width: 80%;
+        height: 100%;
+    }
+
+    h1,
+    h2 {
+        font-size: 4vw;
+    }
+
+    h2 {
+        font-size: 3.5vw;
+    }
+
+    #nosotros {
+        font-size: 3.5vw;
+    }
+
+    #nosotros h2 {
+        font-size: 4vw;
+    }
+
+    #cabecera {
+        width: 30vw;
+    }
+
+    nav a,
+    footer a {
+        font-size: 4vw;
+    }
+
+    .menu {
+        padding: 0vw 7.5vw;
+    }
+
+    #boton1 {
+        margin-top: -35%;
+        margin-left: 41%;
+    }
+
+    .etiqueta {
+        font-size: 3.5vw;
+    }
+
+    #inventario_contenedor {
+        gap: 2vw
+    }
+
+    .inventario img {
+        width: 45vw;
+        height: 100%;
+    }
+
+    .whatsapp-float,
+    .instagram-float {
+        width: 8vw;
+        height: 8vw;
+        bottom: 4vw;
+        right: 4vw;
+        font-size: 5vw;
+    }
+
+    .instagram-float {
+        right: 15vw;
+    }
+
+    .whatsapp-float:hover,
+    .instagram-float:hover {
+        transform: scale(1.1);
+    }
+
+    .whatsapp-float img,
+    .instagram-float img {
+        width: 5vw;
+        height: 5vw;
+    }
+
+    footer {
+        font-size: 3vw;
+    }
+
+    #abrirCarrito {
+        font-size: 4vw;
+    }
+
+    #cerrarCarrito {
+        width: 7vw;
+        height: 7vw;
+        margin: 2vw 0 0 1vw;
+    }
+
+    #carrito-flotante h3 {
+        left: 18vw;
+        font-size: 4vw;
+    }
+
+    .item-carrito {
+        position: relative;
+        top: 8vw;
+        border-bottom: 0.5vw solid #eee;
+        padding: 0.2vw 0;
+        font-size: 2vw;
+    }
+
+    #whatsapp-btn {
+        top: 5vw;
+        right: 2.5vw;
+        font-size: 3vw;
     }
 }
