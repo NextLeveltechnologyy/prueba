@@ -52,7 +52,7 @@ async function cargarStock() {
             data[producto] = {
                 nombre: producto,
                 precio: Number(precio),
-                img: `img/${imagen}.jpeg`,
+                img: `img/${imagen}`,
                 variantes: {}
             };
         }
