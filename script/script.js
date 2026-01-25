@@ -32,39 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-async function cargarStock() {
-    const res = await fetch("data/stock.csv");
-    const texto = await res.text();
-    const filas = texto.split("\n").slice(1);
-
-    const productos = {};
-
-    filas.forEach(fila => {
-        if (!fila.trim()) return;
-
-        const [nombre, color, talle, stock, precio, imagen] = fila.split(",");
-
-        if (!productos[nombre]) {
-            productos[nombre] = {
-                nombre,
-                precio: Number(precio),
-                img: `img/${imagen}.jpeg`,
-                variantes: {}
-            };
-        }
-
-        if (!productos[nombre].variantes[color]) {
-            productos[nombre].variantes[color] = {};
-        }
-
-        productos[nombre].variantes[color][talle] = Number(stock);
-    });
-
-    return Object.values(productos);
-}
-
-
-//Carrito
 let productos = [];
 const carrito = [];
 
@@ -79,24 +46,22 @@ async function cargarStock() {
     filas.forEach(fila => {
         if (!fila.trim()) return;
 
-        const [nombre, color, talle, stock, precio, imagen] =
-            fila.split(",").map(v => v.trim());
+        const [producto, color, talle, stock, precio, imagen] = fila.split(";");
 
-
-        if (!data[nombre]) {
-            data[nombre] = {
-                nombre,
+        if (!data[producto]) {
+            data[producto] = {
+                nombre: producto,
                 precio: Number(precio),
-                img: `img/${imagen}.jpg`,
+                img: `img/${imagen}.jpeg`,
                 variantes: {}
             };
         }
 
-        if (!data[nombre].variantes[color]) {
-            data[nombre].variantes[color] = {};
+        if (!data[producto].variantes[color]) {
+            data[producto].variantes[color] = {};
         }
 
-        data[nombre].variantes[color][talle] = Number(stock);
+        data[producto].variantes[color][talle] = Number(stock);
     });
 
     return Object.values(data);
@@ -122,39 +87,37 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         productos.forEach(prod => {
             inventario.innerHTML += `
-        <div class="inventario" data-nombre="${prod.nombre}">
-          <img src="${prod.img}">
-          <h4>${prod.nombre}</h4>
-          <p>$${prod.precio}</p>
+            <div class="inventario" data-nombre="${prod.nombre}">
+                <img src="${prod.img}" alt="${prod.nombre}">
+                <h4>${prod.nombre}</h4>
+                <p>$${prod.precio}</p>
 
-          <select class="color">
-            <option value="">Color</option>
-            ${Object.keys(prod.variantes).map(c =>
+                <select class="color">
+                    <option value="">Color</option>
+                    ${Object.keys(prod.variantes).map(c =>
                 `<option value="${c}">${c}</option>`
             ).join("")}
-          </select>
+                </select>
 
-          <select class="talle" disabled>
-            <option value="">Talle</option>
-          </select>
+                <select class="talle" disabled>
+                    <option value="">Talle</option>
+                </select>
 
-          <p class="stock-info"></p>
-
-          <button class="agregar">Agregar</button>
-        </div>
-      `;
+                <p class="stock-info"></p>
+                <button class="agregar">Agregar</button>
+            </div>
+            `;
         });
     }
 
     /* ================== COLOR → TALLES ================== */
     document.addEventListener("change", e => {
+
         if (e.target.classList.contains("color")) {
             const box = e.target.closest(".inventario");
-            talleSel.innerHTML = `<option value="">Talle</option>`;
-            talleSel.disabled = true;
-            stockInfo.textContent = "";
-            box.querySelector(".talle").value = "";
+            const talleSel = box.querySelector(".talle");
             const stockInfo = box.querySelector(".stock-info");
+
             const prod = productos.find(p => p.nombre === box.dataset.nombre);
             const color = e.target.value;
 
@@ -166,10 +129,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             Object.entries(prod.variantes[color]).forEach(([talle, stock]) => {
                 talleSel.innerHTML += `
-          <option value="${talle}" ${stock === 0 ? "disabled" : ""}>
-            ${talle} (${stock})
-          </option>
-        `;
+                    <option value="${talle}" ${stock === 0 ? "disabled" : ""}>
+                        ${talle} (${stock})
+                    </option>
+                `;
             });
 
             talleSel.disabled = false;
@@ -211,13 +174,17 @@ document.addEventListener("DOMContentLoaded", async () => {
             p => p.nombre === prod.nombre && p.color === color && p.talle === talle
         );
 
-        item ? item.cantidad++ : carrito.push({
-            nombre: prod.nombre,
-            color,
-            talle,
-            precio: prod.precio,
-            cantidad: 1
-        });
+        if (item) {
+            item.cantidad++;
+        } else {
+            carrito.push({
+                nombre: prod.nombre,
+                color,
+                talle,
+                precio: prod.precio,
+                cantidad: 1
+            });
+        }
 
         renderCarrito();
         renderInventario();
@@ -227,7 +194,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     function renderCarrito() {
         listaCarrito.innerHTML = "";
         let total = 0;
-        let mensaje = "Hola cocó clothing! Quiero hacer este pedido:%0A";
+        let mensaje = "Hola Cocó Clothing! Quiero este pedido:%0A";
 
         carrito.forEach((item, i) => {
             const subtotal = item.precio * item.cantidad;
@@ -236,19 +203,18 @@ document.addEventListener("DOMContentLoaded", async () => {
             const div = document.createElement("div");
             div.className = "item-carrito";
             div.innerHTML = `
-        <button class="menos">➖</button>
-        ${item.nombre} ${item.color} ${item.talle} x${item.cantidad}
-        <button class="mas">➕</button>
-        $${subtotal}
-        <button class="borrar-item">🗑️</button>
-      `;
+                <button class="menos">➖</button>
+                ${item.nombre} ${item.color} ${item.talle} x${item.cantidad}
+                <button class="mas">➕</button>
+                $${subtotal}
+                <button class="borrar-item">🗑️</button>
+            `;
 
             div.querySelector(".mas").onclick = () => modificarCantidad(item, 1);
             div.querySelector(".menos").onclick = () => modificarCantidad(item, -1);
             div.querySelector(".borrar-item").onclick = () => eliminarItem(i);
 
             listaCarrito.appendChild(div);
-
             mensaje += `• ${item.nombre} ${item.color} ${item.talle} x${item.cantidad} = $${subtotal}%0A`;
         });
 
@@ -285,8 +251,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         renderInventario();
     }
 
-    /* ================== ABRIR / CERRAR CARRITO ================== */
     abrir.onclick = () => carritoDiv.style.display = "block";
     cerrar.onclick = () => carritoDiv.style.display = "none";
-
 });
