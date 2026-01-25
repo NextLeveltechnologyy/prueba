@@ -1,6 +1,9 @@
 function formatearPrecio(precio) {
     return precio.toLocaleString("es-AR");
 }
+document.addEventListener("DOMContentLoaded", () => {
+    alert("JS cargado");
+});
 
 document.addEventListener('DOMContentLoaded', () => {
     /* MENÚ LATERAL */
@@ -9,30 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     btnMenu.addEventListener("click", () => {
         sideMenu.classList.toggle("active");
-    });
-
-    const contenedores = document.querySelectorAll("#inventario_contenedor > div");
-    let visibles = 6; // cantidad inicial de divs visibles
-
-    // Ocultar todos excepto los primeros
-    contenedores.forEach((div, index) => {
-        if (index >= visibles) {
-            div.style.display = "none";
-        }
-    });
-
-    function mostrarMas() {
-        for (let i = visibles; i < visibles + 6 && i < contenedores.length; i++) {
-            contenedores[i].style.display = "flex"; // antes era "block"
-        }
-        visibles += 6;
-    }
-
-    // Detectar scroll cerca del final
-    window.addEventListener("scroll", () => {
-        if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 10) {
-            mostrarMas();
-        }
     });
 });
 

@@ -1,5 +1,5 @@
 * {
-    font-family: cursive
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
 }
 
 /*conenedor de video comienzo*/
@@ -216,27 +216,6 @@ hr {
     color: black;
 }
 
-/*contenedor de inventario*/
-#inventario_contenedor {
-    font-size: 2.2vw;
-    display: grid;
-    justify-content: center;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 2fr));
-}
-
-/*cuadro de cada producto*/
-.inventario {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/*imagen de cada producto*/
-.inventario img {
-    width: 30vw;
-    height: 100%;
-}
-
 /*contenedor de filtros*/
 #filtros {
     display: flex;
@@ -246,7 +225,7 @@ hr {
     gap: 1.5vw;
     margin: 0 auto 1vw;
     background: none;
-    z-index: 100;
+    z-index: 1;
 }
 
 /*seleccionador de filtros*/
@@ -376,6 +355,7 @@ footer {
 
 /*seleccionador debajo precio*/
 select {
+    text-align: center;
     margin-top: 1vw;
     width: 100%;
     cursor: pointer;
@@ -413,18 +393,30 @@ select {
     font-weight: bold;
 }
 
+/*contenedor de inventario*/
+#inventario_contenedor {
+    font-size: 2.2vw;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 3fr));
+}
+
 /*cuadro productos*/
 .inventario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     border: 1px solid #ddd;
     padding: 0;
     margin: 0.5vw;
     border-radius: 12px;
-    max-width: 300px;
 }
 
 /*imagen de productos*/
 .inventario img {
-    width: 100%;
+    max-width: 100%;
+    height: 100%;
     border-radius: 10px;
 }
 
@@ -478,44 +470,23 @@ footer a:hover,
 
 @media (max-width:900px) {
 
-    /*conenedor de video comienzo*/
-    .video-container {
-        position: absolute;
-        left: 25%;
-    }
-
-    /*video intro*/
-    .video {
-        width: 70%;
-        height: 100%;
-    }
-
     /*titulos y subtitulos*/
     h1,
     h2 {
         margin: 0;
-        text-align: center;
         font-size: 3vw;
     }
 
     /*subtitulos*/
     h2 {
-        font-size: 2vw;
+        font-size: 3vw;
         margin-bottom: 1vw;
-    }
-
-    /*botones*/
-    button {
-        border-style: none;
-        cursor: pointer;
-        background-color: none;
     }
 
     /*texto*/
     #nosotros {
         font-size: 2vw;
         margin: 0 1vw 1vw 1vw;
-        text-align: center;
     }
 
     /*subtitulo texto*/
@@ -525,68 +496,37 @@ footer a:hover,
 
     /*logo*/
     #cabecera {
-        width: 20vw;
-        height: 15vw;
-        display: flex;
-        justify-self: center;
+        width: 25vw;
+        height: 20vw;
     }
 
     /*navegacion*/
     nav {
-        position: fixed;
-        left: -190vw;
-        top: 0;
-        height: 100%;
-        width: 18vw;
-        background: rgba(255, 255, 255, 0.8);
+        width: 50vw;
         padding-top: 7vw;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        transition: left 0.4s ease;
-        z-index: 9;
     }
 
     /*boton de menu*/
     .menu-btn {
-        position: fixed;
         left: 3vw;
-        background: rgba(255, 255, 255, 0.8);
-        color: black;
         padding: 0.3vw 0.5vw;
-        font-size: 2.6vw;
-        cursor: pointer;
-        z-index: 10;
-        border-radius: 10px;
-    }
-
-    nav.active {
-        left: 0;
+        font-size: 4vw;
     }
 
     /*imagen del nav*/
     nav img {
-        width: 15vw;
-        height: 12vw;
+        width: 25vw;
+        height: 20vw;
         margin-bottom: 3vw;
     }
 
     /*texto nav*/
     nav a,
     footer a {
-        color: black;
-        text-decoration: none;
-        font-size: 2.5vw;
-    }
-
-    /*lineas*/
-    hr {
-        width: 95%;
-        height: 0.1vw;
+        font-size: 4vw;
     }
 
     .contenedor-carruseles {
-        display: flex;
         gap: 2vw;
     }
 
@@ -594,8 +534,6 @@ footer a:hover,
     .carrusel2,
     .carrusel3,
     .carrusel4 {
-        position: relative;
-        overflow: hidden;
         padding: 0 0 1vw 0;
     }
 
@@ -604,21 +542,10 @@ footer a:hover,
         margin-left: 0.5vw;
     }
 
-    .carrusel3,
-    .carrusel4 {
-        display: none;
-    }
-
     .slides,
     .slides1 {
-        display: flex;
         width: 100%;
         height: 100%;
-        animation: slide 12s infinite;
-    }
-
-    .slides1 {
-        animation: slide 15s infinite;
     }
 
     .slide {
@@ -626,47 +553,7 @@ footer a:hover,
         flex-shrink: 0;
     }
 
-    .slide img {
-        width: 100%;
-        height: 100%;
-    }
-
-    @keyframes slide {
-        0% {
-            transform: translateX(0%);
-        }
-
-        20% {
-            transform: translateX(0%);
-        }
-
-        25% {
-            transform: translateX(-100%);
-        }
-
-        45% {
-            transform: translateX(-100%);
-        }
-
-        50% {
-            transform: translateX(-200%);
-        }
-
-        70% {
-            transform: translateX(-200%);
-        }
-
-        75% {
-            transform: translateX(0%);
-        }
-
-        100% {
-            transform: translateX(0%);
-        }
-    }
-
     #cuadro1 {
-        display: flex;
         gap: 1vw;
     }
 
@@ -678,230 +565,127 @@ footer a:hover,
 
     #boton1 {
         font-size: 3vw;
-        border-style: solid;
-        color: black;
-        background-color: white;
-        position: absolute;
-        transform: translateX(-10%) translateY(5%);
-        animation: subir 1.5s ease-out forwards;
         margin-top: 15%;
         margin-left: -57%;
     }
 
-    #boton1:hover {
-        color: black;
-    }
-
-    /*contenedor de inventario*/
-    #inventario_contenedor {
-        font-size: 2.2vw;
-        display: grid;
-        justify-content: center;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 2fr));
-    }
-
-    /*cuadro de cada producto*/
-    .inventario {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    /*imagen de cada producto*/
-    .inventario img {
-        width: 30vw;
-        height: 100%;
-    }
-
     /*contenedor de filtros*/
     #filtros {
-        display: flex;
-        position: sticky;
         top: 1vw;
-        width: 65vw;
-        gap: 1.5vw;
-        margin: 0 auto 1vw;
-        background: none;
-        z-index: 100;
+        width: 75vw;
+        gap: 1vw;
     }
 
     /*seleccionador de filtros*/
     #filtros select {
-        text-align: center;
         padding: 0.7vw 0;
         border-radius: 8px;
+        font-size: 2.6vw;
     }
 
     /*logos flotantes*/
     .whatsapp-float,
     .instagram-float {
-        position: fixed;
-        width: 5vw;
-        height: 5vw;
+        width: 8vw;
+        height: 8vw;
         bottom: 2vw;
         right: 3.2vw;
-        background-color: #25D366;
-        color: white;
-        border-radius: 50vw;
-        text-align: center;
         font-size: 4vw;
-        box-shadow: 0.5vw 0.5vw 0.5vw rgba(0, 0, 0, 0.3);
-        z-index: 100;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: transform 0.3s ease;
     }
 
     .instagram-float {
-        background-color: #E1306C;
-        transition: transform 0.3s ease;
-        bottom: 8vw;
-    }
-
-    .whatsapp-float:hover,
-    .instagram-float:hover {
-        transform: scale(1.1);
+        bottom: 10vw;
     }
 
     .whatsapp-float img,
     .instagram-float img {
-        width: 3vw;
-        height: 3vw;
+        width: 6vw;
+        height: 6vw;
     }
 
     /*pie*/
     footer {
-        color: black;
-        justify-items: center;
-        text-align: center;
-        font-size: 2vw;
+        font-size: 3vw;
     }
 
     #copy {
-        border-style: none;
-        margin-bottom: 2px;
+        margin-bottom: 3px;
     }
 
     #NLT {
-        font-size: 2vw;
+        font-size: 2.5vw;
     }
 
     /*boton abre carrito*/
     #abrirCarrito {
-        position: fixed;
-        background: rgba(255, 255, 255, 0.8);
         top: 1.5vw;
         right: 3.2vw;
-        border-radius: 10px;
-        z-index: 90;
-        font-size: 2.5vw;
+        font-size: 4.5vw;
     }
 
     /*boton cierra carrito*/
     #cerrarCarrito {
-        background: rgba(229, 229, 229, 0.8);
         width: 5vw;
         height: 5vw;
         margin: 1vw 0 0 1vw;
-        border-radius: 40%;
     }
 
     /*ventana carrito*/
     #carrito-flotante {
-        position: fixed;
         top: 1vw;
         width: 96%;
         height: 95%;
-        background: white;
-        border: 2px solid #ccc;
+        border: 2px;
         border-radius: 10px;
         padding: 10px;
-        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
-        overflow-y: auto;
-        z-index: 100;
     }
 
     /*titulo carrito*/
     #carrito-flotante h3 {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        font-weight: bold;
-        font-size: 3vw;
-        text-decoration: underline;
+        font-size: 4.2vw;
     }
 
     .item-carrito {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10vw;
-        text-align: center;
+        gap: 5vw;
     }
 
     #total-carrito {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        font-weight: bold;
-        font-size: 2.5vw;
+        font-size: 3vw;
     }
 
     /*seleccionador debajo precio*/
     select {
         margin-top: 1vw;
-        width: 100%;
-        cursor: pointer;
     }
 
     /*debajo de selec color y talle*/
     .cantidad {
         width: 5vw;
         margin: 0;
-        text-align: center;
-        cursor: pointer;
     }
 
     /*boton agregar*/
     .agregar {
-        margin: 1vw;
-        color: white;
-        background-color: rgb(79, 79, 79);
-        padding: 0.7vw;
-        border-radius: 10px;
+        margin: 1.2vw;
+        padding: 1vw;
     }
 
     /*boton whatsapp carrito*/
     #whatsapp-btn {
-        display: block;
-        position: absolute;
         top: 2vw;
         right: 2vw;
         padding: 1.3vw;
-        background: #25D366;
-        color: white;
-        text-align: center;
-        border-radius: 15px;
-        text-decoration: none;
-        font-weight: bold;
     }
 
-    /*cuadro productos*/
-    .inventario {
-        border: 1px solid #ddd;
-        padding: 0;
-        margin: 0.5vw;
-        border-radius: 12px;
-        max-width: 300px;
+    /*contenedor de inventario*/
+    #inventario_contenedor {
+        font-size: 3vw;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
 
     /*imagen de productos*/
     .inventario img {
-        width: 100%;
-        border-radius: 10px;
+        max-width: 100%;
     }
 
     /*nombre del producto*/
@@ -910,45 +694,22 @@ footer a:hover,
     }
 
     /*genero*/
-    .inventario p:nth-of-type(1) {
-        margin: 0;
-        color: #666;
-    }
+    .inventario p:nth-of-type(1) {}
 
     /*precio*/
-    .inventario p:nth-of-type(2) {
-        font-weight: bold;
-    }
+    .inventario p:nth-of-type(2) {}
 
     .stock-info {
         font-size: 1.8vw;
-        color: #555;
-    }
-
-    select:disabled {
-        background: #eee;
     }
 
     .item-carrito {
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px;
         padding-bottom: 1vw;
     }
 
     .content,
     .content2 {
-        background: rgba(0, 0, 0, 0.4);
-        text-align: center;
         padding: 1vw;
-        box-shadow: -2px 10px 10px black;
-    }
-
-    /*posicion mouse nav y pie*/
-    button:hover,
-    nav a:hover,
-    footer a:hover,
-    #NLT:hover,
-    #whatsapp-btn:hover {
-        transition: 0.3s ease, color 0.3s ease;
-        transform: scale(1.1);
     }
 }
