@@ -1,9 +1,6 @@
 function formatearPrecio(precio) {
     return precio.toLocaleString("es-AR");
 }
-document.addEventListener("DOMContentLoaded", () => {
-    alert("JS cargado");
-});
 
 document.addEventListener('DOMContentLoaded', () => {
     /* MENÚ LATERAL */
