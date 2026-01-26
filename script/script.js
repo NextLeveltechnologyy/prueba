@@ -247,6 +247,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             mensaje += `• ${item.nombre} ${item.color} ${item.talle} x${item.cantidad} = $${formatearPrecio(subtotal)}%0A`;
         });
 
+        mensaje += `%0A*TOTAL: $${formatearPrecio(total)}*`;
+
         totalCarrito.textContent = `Total: $${formatearPrecio(total)}`;
         whatsappBtn.href = `https://wa.me/3516829976?text=${mensaje}`;
     }

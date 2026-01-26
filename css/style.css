@@ -123,14 +123,12 @@ hr {
     padding: 0 0 1vw 0;
 }
 
-.carrusel1,
-.carrusel3 {
-    margin-left: 0.5vw;
+.carrusel1 {
+    margin-left: 2.5vw;
 }
 
-.carrusel3,
 .carrusel4 {
-    display: none;
+    margin-right: 2.5vw;
 }
 
 .slides,
@@ -187,33 +185,6 @@ hr {
     100% {
         transform: translateX(0%);
     }
-}
-
-#cuadro1 {
-    display: flex;
-    gap: 1vw;
-}
-
-#elementos_cuadro1 {
-    width: 23vw;
-    height: 50vw;
-    margin: 0 0.4vw;
-}
-
-#boton1 {
-    font-size: 3vw;
-    border-style: solid;
-    color: black;
-    background-color: white;
-    position: absolute;
-    transform: translateX(-10%) translateY(5%);
-    animation: subir 1.5s ease-out forwards;
-    margin-top: 15%;
-    margin-left: -57%;
-}
-
-#boton1:hover {
-    color: black;
 }
 
 /*contenedor de filtros*/
@@ -423,6 +394,7 @@ select {
 /*nombre del producto*/
 .inventario h4 {
     margin: 0.5vw 0;
+    text-align: center;
 }
 
 /*genero*/
@@ -450,14 +422,6 @@ select:disabled {
     padding-bottom: 1vw;
 }
 
-.content,
-.content2 {
-    background: rgba(0, 0, 0, 0.4);
-    text-align: center;
-    padding: 1vw;
-    box-shadow: -2px 10px 10px black;
-}
-
 /*posicion mouse nav y pie*/
 button:hover,
 nav a:hover,
@@ -468,7 +432,7 @@ footer a:hover,
     transform: scale(1.1);
 }
 
-@media (max-width:900px) {
+@media (max-width:800px) {
 
     /*titulos y subtitulos*/
     h1,
@@ -531,15 +495,21 @@ footer a:hover,
     }
 
     .carrusel1,
-    .carrusel2,
-    .carrusel3,
-    .carrusel4 {
+    .carrusel2 {
         padding: 0 0 1vw 0;
     }
 
-    .carrusel1,
-    .carrusel3 {
-        margin-left: 0.5vw;
+    .carrusel1 {
+        margin-left: 2.5vw;
+    }
+
+    .carrusel2 {
+        margin-right: 2.5vw;
+    }
+
+    .carrusel3,
+    .carrusel4 {
+        display: none;
     }
 
     .slides,
@@ -551,22 +521,6 @@ footer a:hover,
     .slide {
         width: 100%;
         flex-shrink: 0;
-    }
-
-    #cuadro1 {
-        gap: 1vw;
-    }
-
-    #elementos_cuadro1 {
-        width: 23vw;
-        height: 50vw;
-        margin: 0 0.4vw;
-    }
-
-    #boton1 {
-        font-size: 3vw;
-        margin-top: 15%;
-        margin-left: -57%;
     }
 
     /*contenedor de filtros*/
@@ -693,12 +647,6 @@ footer a:hover,
         margin: 0.5vw 0;
     }
 
-    /*genero*/
-    .inventario p:nth-of-type(1) {}
-
-    /*precio*/
-    .inventario p:nth-of-type(2) {}
-
     .stock-info {
         font-size: 1.8vw;
     }
@@ -708,8 +656,199 @@ footer a:hover,
         padding-bottom: 1vw;
     }
 
-    .content,
-    .content2 {
+}
+
+/*pantallas grandes*/
+@media (min-width:1200px) {
+
+    /*titulos y subtitulos*/
+    h1,
+    h2 {
+        margin: 0;
+        font-size: 1.3vw;
+    }
+
+    /*subtitulos*/
+    h2 {
+        font-size: 1.2vw;
+        margin-bottom: 1.5vw;
+    }
+
+    /*texto*/
+    #nosotros {
+        font-size: 1.4vw;
+        margin: 0 1vw 1vw 1vw;
+    }
+
+    /*logo*/
+    #cabecera {
+        width: 12vw;
+        height: 8vw;
+    }
+
+    /*navegacion*/
+    nav {
+        width: 20vw;
+        padding-top: 7vw;
+    }
+
+    /*boton de menu*/
+    .menu-btn {
+        left: 3vw;
+        padding: 0.3vw 0.5vw;
+        font-size: 2vw;
+    }
+
+    /*imagen del nav*/
+    nav img {
+        width: 15vw;
+        height: 10vw;
+        margin-bottom: 3vw;
+    }
+
+    /*texto nav*/
+    nav a,
+    footer a {
+        font-size: 2vw;
+    }
+
+    .contenedor-carruseles {
+        gap: 0.5vw;
+    }
+
+    .carrusel1,
+    .carrusel2,
+    .carrusel3,
+    .carrusel4 {
+        display: flex;
+        margin: 0 0.1vw;
+    }
+
+    .carrusel1 {
+        margin-left: 2.5vw;
+    }
+
+    .carrusel4 {
+        margin-right: 2.5vw;
+    }
+
+    /*contenedor de filtros*/
+    #filtros {
+        top: 0.2vw;
+    }
+
+    /*logos flotantes*/
+    .whatsapp-float,
+    .instagram-float {
+        width: 3vw;
+        height: 3vw;
+        bottom: 2vw;
+        right: 3vw;
+        font-size: 1.5vw;
+    }
+
+    .instagram-float {
+        bottom: 6vw;
+    }
+
+    .whatsapp-float img,
+    .instagram-float img {
+        width: 3vw;
+        height: 3vw;
+    }
+
+    /*pie*/
+    footer {
+        font-size: 1.5vw;
+    }
+
+    #NLT {
+        font-size: 1vw;
+    }
+
+    /*boton abre carrito*/
+    #abrirCarrito {
+        top: 0.5vw;
+        right: 2vw;
+        font-size: 2.5vw;
+    }
+
+    /*boton cierra carrito*/
+    #cerrarCarrito {
+        width: 3vw;
+        height: 3vw;
+        margin: 1vw 0 0 1vw;
+    }
+
+    /*ventana carrito*/
+    #carrito-flotante {
+        top: 1vw;
+        width: 96%;
+        height: 95%;
+        border: 2px;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    /*titulo carrito*/
+    #carrito-flotante h3 {
+        font-size: 2vw;
+    }
+
+    .item-carrito {
+        gap: 5vw;
+    }
+
+    #total-carrito {
+        font-size: 1.8vw;
+    }
+
+    /*seleccionador debajo precio*/
+    select {
+        margin-top: 1vw;
+    }
+
+    /*debajo de selec color y talle*/
+    .cantidad {
+        width: 5vw;
+        margin: 0;
+    }
+
+    /*boton agregar*/
+    .agregar {
+        margin: 1.2vw;
         padding: 1vw;
+    }
+
+    /*boton whatsapp carrito*/
+    #whatsapp-btn {
+        top: 2vw;
+        right: 2vw;
+        padding: 1.3vw;
+    }
+
+    /*contenedor de inventario*/
+    #inventario_contenedor {
+        font-size: 1.5vw;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+
+    /*imagen de productos*/
+    .inventario img {
+        max-width: 100%;
+    }
+
+    /*nombre del producto*/
+    .inventario h4 {
+        margin: 0.5vw 0;
+    }
+
+    .stock-info {
+        font-size: 1vw;
+    }
+
+    .item-carrito {
+        border-bottom: 1px;
+        padding-bottom: 1vw;
     }
 }
