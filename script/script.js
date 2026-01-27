@@ -2,20 +2,17 @@ function formatearPrecio(precio) {
     return precio.toLocaleString("es-AR");
 }
 
+/* ================= MENÚ ================= */
 document.addEventListener('DOMContentLoaded', () => {
-    /* MENÚ LATERAL */
     const btnMenu = document.querySelector(".menu-btn");
     const sideMenu = document.getElementById("sideMenu");
-
-    btnMenu.addEventListener("click", () => {
-        sideMenu.classList.toggle("active");
-    });
+    btnMenu.addEventListener("click", () => sideMenu.classList.toggle("active"));
 });
 
 let productos = [];
 const carrito = [];
 
-/* ================== CARGAR STOCK DESDE CSV ================== */
+/* ================= CARGAR STOCK ================= */
 async function cargarStock() {
     const res = await fetch("data/stock.csv");
     const texto = await res.text();
@@ -26,7 +23,8 @@ async function cargarStock() {
     filas.forEach(fila => {
         if (!fila.trim()) return;
 
-        const [tipo, genero, nombre, color, talle, stock, precio, imagen] = fila.split(";");
+        const [tipo, genero, nombre, color, talle, stock, precio, imagen] =
+            fila.split(";").map(v => v.trim());
 
         if (!data[nombre]) {
             data[nombre] = {
@@ -34,22 +32,24 @@ async function cargarStock() {
                 genero,
                 nombre,
                 precio: Number(precio),
-                img: `img/${imagen}`,
                 variantes: {}
             };
         }
 
         if (!data[nombre].variantes[color]) {
-            data[nombre].variantes[color] = {};
+            data[nombre].variantes[color] = {
+                img: imagen,
+                talles: {}
+            };
         }
 
-        data[nombre].variantes[color][talle] = Number(stock);
+        data[nombre].variantes[color].talles[talle] = Number(stock);
     });
 
     return Object.values(data);
 }
 
-/* ================== DOM READY ================== */
+/* ================= DOM READY ================= */
 document.addEventListener("DOMContentLoaded", async () => {
 
     const inventario = document.getElementById("inventario_contenedor");
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     cargarFiltros();
     renderInventario();
 
-    /* ================== FILTROS ================== */
+    /* ================= FILTROS ================= */
     function cargarFiltros() {
         const tipos = new Set();
         const colores = new Set();
@@ -77,9 +77,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         productos.forEach(p => {
             tipos.add(p.tipo);
-            Object.entries(p.variantes).forEach(([color, ts]) => {
+            Object.entries(p.variantes).forEach(([color, obj]) => {
                 colores.add(color);
-                Object.keys(ts).forEach(t => talles.add(t));
+                Object.keys(obj.talles).forEach(t => talles.add(t));
             });
         });
 
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         talles.forEach(t => filtroTalle.innerHTML += `<option value="${t}">${t}</option>`);
     }
 
-    /* ================== INVENTARIO ================== */
+    /* ================= INVENTARIO ================= */
     function renderInventario() {
         inventario.innerHTML = "";
 
@@ -100,43 +100,44 @@ document.addEventListener("DOMContentLoaded", async () => {
         productos.forEach(prod => {
 
             if (tipoF && prod.tipo !== tipoF) return;
-            if (generoF && prod.genero !== generoF) return;
+            if (generoF && prod.genero.toLowerCase() !== generoF) return;
 
             let visible = false;
 
-            Object.entries(prod.variantes).forEach(([color, ts]) => {
+            Object.entries(prod.variantes).forEach(([color, obj]) => {
                 if (colorF && color !== colorF) return;
-                Object.keys(ts).forEach(talle => {
-                    if (talleF && talle !== talleF) return;
+                Object.keys(obj.talles).forEach(t => {
+                    if (talleF && t !== talleF) return;
                     visible = true;
                 });
             });
 
             if (!visible) return;
 
+            const primerColor = Object.keys(prod.variantes)[0];
+            const imgSrc = prod.variantes[primerColor]?.img || "img/no-image.jpg";
+
             inventario.innerHTML += `
-            <div class="inventario" data-nombre="${prod.nombre}">
-                <img src="${prod.img}">
-                <h4>${prod.nombre}</h4>
-                <p>${prod.genero.toLowerCase()}</p>
-                <p class="producto-precio">$${formatearPrecio(prod.precio)}</p>
+                <div class="inventario" data-nombre="${prod.nombre}">
+                    <img src="${imgSrc}" onerror="this.src='img/no-image.jpg'">
+                    <h4>${prod.nombre}</h4>
+                    <p>${prod.genero.toLowerCase()}</p>
+                    <p class="producto-precio">$${formatearPrecio(prod.precio)}</p>
 
+                    <select class="color">
+                        <option value="">Color</option>
+                        ${Object.keys(prod.variantes)
+                    .map(c => `<option value="${c}">${c}</option>`).join("")}
+                    </select>
 
-                <select class="color">
-                    <option value="">Color</option>
-                    ${Object.keys(prod.variantes).map(c => `<option value="${c}">${c}</option>`).join("")}
-                </select>
+                    <select class="talle" disabled>
+                        <option value="">Talle</option>
+                    </select>
 
-                <select class="talle" disabled>
-                    <option value="">Talle</option>
-                </select>
-
-                <p class="stock-info"></p>
-
-                <input type="number" class="cantidad" min="1" value="1" disabled>
-
-                <button class="agregar">Agregar</button>
-            </div>
+                    <p class="stock-info"></p>
+                    <input type="number" class="cantidad" min="1" value="1" disabled>
+                    <button class="agregar">Agregar</button>
+                </div>
             `;
         });
     }
@@ -144,7 +145,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     [filtroTipo, filtroGenero, filtroColor, filtroTalle]
         .forEach(f => f.addEventListener("change", renderInventario));
 
-    /* ================== COLOR → TALLES ================== */
+    /* ================= COLOR / TALLE ================= */
     document.addEventListener("change", e => {
 
         if (e.target.classList.contains("color")) {
@@ -152,6 +153,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             const prod = productos.find(p => p.nombre === box.dataset.nombre);
             const color = e.target.value;
 
+            const img = box.querySelector("img");
             const talleSel = box.querySelector(".talle");
             const cantidad = box.querySelector(".cantidad");
             const stockInfo = box.querySelector(".stock-info");
@@ -162,7 +164,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             if (!color) return;
 
-            Object.entries(prod.variantes[color]).forEach(([t, s]) => {
+            img.src = prod.variantes[color].img || "img/no-image.jpg";
+            img.onerror = () => img.src = "img/no-image.jpg";
+
+            Object.entries(prod.variantes[color].talles).forEach(([t, s]) => {
                 talleSel.innerHTML += `
                     <option value="${t}" ${s === 0 ? "disabled" : ""}>
                         ${t} (${s})
@@ -178,7 +183,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             const color = box.querySelector(".color").value;
             const talle = e.target.value;
 
-            const stock = prod.variantes[color][talle];
+            const stock = prod.variantes[color].talles[talle];
             const cantidad = box.querySelector(".cantidad");
 
             box.querySelector(".stock-info").textContent = `Stock disponible: ${stock}`;
@@ -188,7 +193,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     });
 
-    /* ================== AGREGAR AL CARRITO ================== */
+    /* ================= CARRITO ================= */
     document.addEventListener("click", e => {
         if (!e.target.classList.contains("agregar")) return;
 
@@ -199,13 +204,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         const cant = Number(box.querySelector(".cantidad").value);
 
         if (!color || !talle || cant <= 0) return;
+        if (prod.variantes[color].talles[talle] < cant) return alert("No hay stock suficiente");
 
-        if (prod.variantes[color][talle] < cant) {
-            alert("No hay stock suficiente");
-            return;
-        }
-
-        prod.variantes[color][talle] -= cant;
+        prod.variantes[color].talles[talle] -= cant;
 
         const item = carrito.find(i =>
             i.nombre === prod.nombre && i.color === color && i.talle === talle
@@ -218,7 +219,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         renderInventario();
     });
 
-    /* ================== CARRITO ================== */
     function renderCarrito() {
         listaCarrito.innerHTML = "";
         let total = 0;
@@ -243,28 +243,22 @@ document.addEventListener("DOMContentLoaded", async () => {
             div.querySelector(".borrar").onclick = () => eliminarItem(i);
 
             listaCarrito.appendChild(div);
-
             mensaje += `• ${item.nombre} ${item.color} ${item.talle} x${item.cantidad} = $${formatearPrecio(subtotal)}%0A`;
         });
 
         mensaje += `%0A*TOTAL: $${formatearPrecio(total)}*`;
-
         totalCarrito.textContent = `Total: $${formatearPrecio(total)}`;
         whatsappBtn.href = `https://wa.me/3516829976?text=${mensaje}`;
     }
 
     function modificarCantidad(item, cambio) {
         const prod = productos.find(p => p.nombre === item.nombre);
-
-        if (cambio === 1 && prod.variantes[item.color][item.talle] <= 0) return;
+        if (cambio === 1 && prod.variantes[item.color].talles[item.talle] <= 0) return;
 
         item.cantidad += cambio;
-        prod.variantes[item.color][item.talle] -= cambio;
+        prod.variantes[item.color].talles[item.talle] -= cambio;
 
-        if (item.cantidad === 0) {
-            carrito.splice(carrito.indexOf(item), 1);
-        }
-
+        if (item.cantidad === 0) carrito.splice(carrito.indexOf(item), 1);
         renderCarrito();
         renderInventario();
     }
@@ -273,14 +267,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         const item = carrito[index];
         const prod = productos.find(p => p.nombre === item.nombre);
 
-        prod.variantes[item.color][item.talle] += item.cantidad;
+        prod.variantes[item.color].talles[item.talle] += item.cantidad;
         carrito.splice(index, 1);
 
         renderCarrito();
         renderInventario();
     }
 
-    /* ================== ABRIR / CERRAR ================== */
     abrir.onclick = () => carritoDiv.style.display = "block";
     cerrar.onclick = () => carritoDiv.style.display = "none";
 });

@@ -1,18 +1,29 @@
-﻿tipo;genero;producto;color;talle;stock;precio;imagen
-Buzo;masculino;Buzo Canguro;Negro;S;2;12000;buzo_canguro.jpg
-Buzo;masculino;Buzo Canguro;Negro;M;1;12000;buzo_canguro.jpg
-Buzo;masculino;Buzo Canguro;Gris;L;3;12000;buzo_canguro.jpg
-Buzo;masculino;Buzo corto;Azul;M;2;9500;buzo_corto.jpg
-Buzo;femenino;Buzo corto;Rojo;S;1;9500;buzo_corto.jpg
-Buzo;unisex;Buzo estampado;Negro;S;2;15000;buzo_estampado.jpg
-Buzo;unisex;Buzo estampado;Negro;M;1;15000;buzo_estampado.jpg
-Buzo;unisex;Buzo estampado;Negro;L;4;15000;buzo_estampado.jpg
-Buzo;unisex;Buzo estampado;Negro;XL;0;15000;buzo_estampado.jpg
-Gorrito;unisex;Gorrito hilo;Gris;único;1;10000;gorrito_hilo.jpg
-Gorrito;unisex;Gorrito hilo;Rojo;único;1;10000;gorrito_hilo.jpg
-Gorrito;unisex;Gorrito hilo;Verde;único;1;10000;gorrito_hilo.jpg
-Pantalón;femenino;Pantalón engomado;Negro;38;5;25000;pantalon_engomado.jpg
-Pantalón;femenino;Pantalón engomado;Negro;40;2;25000;pantalon_engomado.jpg
-Pantalón;femenino;Pantalón engomado;Blanco;40;2;25000;pantalon_engomado.jpg
-Sueter;femenino;Sueter hilo;Negro;S;2;12000;sueter_hilo.jpg
-Sueter;femenino;Sueter hilo;Blanco;M;3;12000;sueter_hilo.jpg
+tipo;genero;producto;color;talle;stock;precio;imagen
+Vestido;Femenino;Vestido vitta de lino;Camel;Único;1;22000;img/Vestidovittadelinocamel.jpeg
+Vestido;Femenino;Vestido vitta de lino;Blanco;Único;1;22000;img/Vestidovittadelinoblanco.jpeg
+Vestido;Femenino;Vestido vitta de lino;Verde;Único;1;22000;img/Vestidovittadelinoverde.jpeg
+Top;Femenino;Top calado;Blanco;Único;1;7600;img/Topcaladoblanco.jpeg
+Strapless;Femenino;Strapless bandana con tazas;Blanco;Único;1;6000;img/Straplessbandanacontazasblanco.jpeg
+Strapless;Femenino;Strapless bandana con tazas;Negro;Único;1;6000;img/Straplessbandanacontazas5colores.jpeg
+Strapless;Femenino;Strapless bandana con tazas;Rosa;Único;1;6000;img/Straplessbandanacontazas5colores.jpeg
+Strapless;Femenino;Strapless bandana con tazas;Celeste;Único;1;6000;img/Straplessbandanacontazas5colores.jpeg
+Strapless;Femenino;Strapless bandana con tazas;Beige;Único;1;6000;img/Straplessbandanacontazas5colores.jpeg
+Short;Femenino;Short sastrero;Blanco;Único;1;14000;img/Shortsastrero3colores.jpeg
+Short;Femenino;Short sastrero;Negro;Único;1;14000;img/Shortsastrero3colores.jpeg
+Short;Femenino;Short sastrero;Lila;Único;1;14000;img/Shortsastrero3colores.jpeg
+Short;Femenino;Short playero de hilo;blanco;Único;1;14000;img/Shortplayerodehilobeige.jpeg
+Vestido;Femenino;Set Lara;Negro;Único;1;23000;img/SetLaranegro.jpeg
+Vestido;Femenino;Set Lara;Marrón;Único;1;23000;img/SetLaramarrón.jpeg
+Musculosa;Femenino;Musculosa love;Blanco;Único;1;9000;img/Musculosalove2colores.jpeg
+Musculosa;Femenino;Musculosa love;Azul;Único;1;9000;img/Musculosalove2colores.jpeg
+Musculosa;Femenino;Musculosa basic morley;Marrón;Único;1;7000;img/Musculosabasicmorleymarrón.jpeg
+Musculosa;Femenino;Musculosa basic morley;Negro;Único;1;7000;img/Musculosabasicmorley4colores.jpeg
+Musculosa;Femenino;Musculosa basic morley;Rosa;Único;1;7000;img/Musculosabasicmorley4colores.jpeg
+Musculosa;Femenino;Musculosa basic morley;Amarillo;Único;1;7000;img/Musculosabasicmorley4colores.jpeg
+Camisa;Femenino;Camisa de hilo;Blanco;Único;1;17000;img/Camisadehiloblanco.jpeg
+Camisa;Femenino;Camisa de hilo;Beige;Único;1;17000;img/Camisadehilo3colores.jpeg
+Camisa;Femenino;Camisa de hilo;Negro;Único;1;17000;img/Camisadehilo3colores.jpeg
+Blusa;Femenino;Blusa Sofía para atar;Blanco;Único;1;18000;img/Blusasofiablanco.jpeg
+Blusa;Femenino;Blusa calada;Blanco;Único;1;9000;img/Blusacalada3colores.jpeg
+Blusa;Femenino;Blusa calada;Beige;Único;1;9000;img/Blusacalada3colores.jpeg
+Blusa;Femenino;Blusa calada;Marrón;Único;1;9000;img/Blusacalada3colores.jpeg
