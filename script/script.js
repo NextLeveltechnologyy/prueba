@@ -52,6 +52,22 @@ async function cargarStock() {
 /* ================= DOM READY ================= */
 document.addEventListener("DOMContentLoaded", async () => {
 
+    /* ============ INFO COMPRA (INDEX) ============ */
+    const infoDiv = document.getElementById("info-compra");
+    const abrirInfo = document.getElementById("info");
+    const cerrarInfo = document.getElementById("cerrarInfo");
+
+    if (infoDiv && abrirInfo && cerrarInfo) {
+        abrirInfo.addEventListener("click", (e) => {
+            e.preventDefault();
+            infoDiv.style.display = "block";
+        });
+
+        cerrarInfo.addEventListener("click", () => {
+            infoDiv.style.display = "none";
+        });
+    }
+
     const inventario = document.getElementById("inventario_contenedor");
     const carritoDiv = document.getElementById("carrito-flotante");
     const abrir = document.getElementById("abrirCarrito");
@@ -276,4 +292,5 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     abrir.onclick = () => carritoDiv.style.display = "block";
     cerrar.onclick = () => carritoDiv.style.display = "none";
+
 });

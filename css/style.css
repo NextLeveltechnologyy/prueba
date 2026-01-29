@@ -19,12 +19,10 @@ h1,
 h2 {
     margin: 0;
     text-align: center;
-    font-size: 3vw;
 }
 
 /*subtitulos*/
 h2 {
-    font-size: 2vw;
     margin-bottom: 1vw;
 }
 
@@ -37,14 +35,14 @@ button {
 
 /*texto*/
 #nosotros {
-    font-size: 2vw;
     margin: 0 1vw 1vw 1vw;
     text-align: center;
 }
 
 /*subtitulo texto*/
-#nosotros h2 {
-    font-size: 3vw;
+#nosotros h2,
+#nosotros #agenda {
+    font-size: 2.5vw;
 }
 
 /*logo*/
@@ -61,7 +59,7 @@ nav {
     left: -190vw;
     top: 0;
     height: 100%;
-    width: 18vw;
+    width: 20vw;
     background: rgba(255, 255, 255, 0.8);
     padding-top: 7vw;
     display: flex;
@@ -69,6 +67,11 @@ nav {
     align-items: center;
     transition: left 0.4s ease;
     z-index: 9;
+}
+
+nav a {
+    text-align: center;
+    padding: 1vw 0;
 }
 
 /*boton de menu*/
@@ -245,6 +248,7 @@ hr {
     text-align: center;
     padding: 0.7vw 0;
     border-radius: 8px;
+    font-size: 2vw;
 }
 
 /*logos flotantes*/
@@ -300,6 +304,35 @@ footer {
 
 #NLT {
     font-size: 2vw;
+}
+
+/*boton cierra info*/
+#cerrarInfo {
+    background: rgba(229, 229, 229, 0.8);
+    width: 5vw;
+    height: 5vw;
+    margin: 1vw 0 0 1vw;
+    border-radius: 40%;
+}
+
+/*ventana info*/
+#info-compra {
+    position: fixed;
+    top: 1vw;
+    width: 96%;
+    height: 95%;
+    background: white;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+    z-index: 100;
+}
+
+#info-compra h3,
+#info-compra p {
+    text-align: center;
 }
 
 /*boton abre carrito*/
@@ -479,18 +512,15 @@ footer a:hover,
     h1,
     h2 {
         margin: 0;
-        font-size: 3vw;
     }
 
     /*subtitulos*/
     h2 {
-        font-size: 3vw;
         margin-bottom: 1vw;
     }
 
     /*texto*/
     #nosotros {
-        font-size: 2vw;
         margin: 0 1vw 1vw 1vw;
     }
 
@@ -611,6 +641,29 @@ footer a:hover,
         font-size: 2.5vw;
     }
 
+    /*boton abre info*/
+    #info {
+        top: 1.5vw;
+        right: 3.2vw;
+    }
+
+    /*boton cierra info*/
+    #cerrarInfo {
+        width: 5vw;
+        height: 5vw;
+        margin: 1vw 0 0 1vw;
+    }
+
+    /*ventana info*/
+    #info-compra {
+        top: 1vw;
+        width: 96%;
+        height: 95%;
+        border: 2px;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
     /*boton abre carrito*/
     #abrirCarrito {
         top: 1.5vw;
@@ -703,15 +756,12 @@ footer a:hover,
 @media (min-width:1200px) {
 
     /*titulos y subtitulos*/
-    h1,
-    h2 {
+    h1 {
         margin: 0;
-        font-size: 1.3vw;
     }
 
     /*subtitulos*/
     h2 {
-        font-size: 1.2vw;
         margin-bottom: 1.5vw;
     }
 
@@ -782,6 +832,11 @@ footer a:hover,
     /*contenedor de filtros*/
     #filtros {
         top: 0.2vw;
+    }
+
+    /*seleccionador de filtros*/
+    #filtros select {
+        font-size: 1.5vw;
     }
 
     /*logos flotantes*/
