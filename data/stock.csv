@@ -1,29 +1,29 @@
 tipo;genero;producto;color;talle;stock;precio;imagen
-Vestido;Femenino;Vestido vitta de lino;Camel;Único;1;22000;img/Vestidovittadelinocamel.jpeg
-Vestido;Femenino;Vestido vitta de lino;Blanco;Único;1;22000;img/Vestidovittadelinoblanco.jpeg
-Vestido;Femenino;Vestido vitta de lino;Verde;Único;1;22000;img/Vestidovittadelinoverde.jpeg
-Top;Femenino;Top calado;Blanco;Único;1;7600;img/Topcaladoblanco.jpeg
+Vestidos;Femenino;Vestido vitta de lino;Camel;Único;1;22000;img/Vestidovittadelinocamel.jpeg
+Vestidos;Femenino;Vestido vitta de lino;Blanco;Único;1;22000;img/Vestidovittadelinoblanco.jpeg
+Vestidos;Femenino;Vestido vitta de lino;Verde;Único;1;22000;img/Vestidovittadelinoverde.jpeg
+Tops;Femenino;Top calado;Blanco;Único;1;7600;img/Topcaladoblanco.jpeg
 Strapless;Femenino;Strapless bandana con tazas;Blanco;Único;1;6000;img/Straplessbandanacontazasblanco.jpeg
 Strapless;Femenino;Strapless bandana con tazas;Negro;Único;1;6000;img/Straplessbandanacontazas5colores.jpeg
 Strapless;Femenino;Strapless bandana con tazas;Rosa;Único;1;6000;img/Straplessbandanacontazas5colores.jpeg
 Strapless;Femenino;Strapless bandana con tazas;Celeste;Único;1;6000;img/Straplessbandanacontazas5colores.jpeg
 Strapless;Femenino;Strapless bandana con tazas;Beige;Único;1;6000;img/Straplessbandanacontazas5colores.jpeg
-Short;Femenino;Short sastrero;Blanco;Único;1;14000;img/Shortsastrero3colores.jpeg
-Short;Femenino;Short sastrero;Negro;Único;1;14000;img/Shortsastrero3colores.jpeg
-Short;Femenino;Short sastrero;Lila;Único;1;14000;img/Shortsastrero3colores.jpeg
-Short;Femenino;Short playero de hilo;blanco;Único;1;14000;img/Shortplayerodehilobeige.jpeg
-Vestido;Femenino;Set Lara;Negro;Único;1;23000;img/SetLaranegro.jpeg
-Vestido;Femenino;Set Lara;Marrón;Único;1;23000;img/SetLaramarrón.jpeg
-Musculosa;Femenino;Musculosa love;Blanco;Único;1;9000;img/Musculosalove2colores.jpeg
-Musculosa;Femenino;Musculosa love;Azul;Único;1;9000;img/Musculosalove2colores.jpeg
-Musculosa;Femenino;Musculosa basic morley;Marrón;Único;1;7000;img/Musculosabasicmorleymarrón.jpeg
-Musculosa;Femenino;Musculosa basic morley;Negro;Único;1;7000;img/Musculosabasicmorley4colores.jpeg
-Musculosa;Femenino;Musculosa basic morley;Rosa;Único;1;7000;img/Musculosabasicmorley4colores.jpeg
-Musculosa;Femenino;Musculosa basic morley;Amarillo;Único;1;7000;img/Musculosabasicmorley4colores.jpeg
-Camisa;Femenino;Camisa de hilo;Blanco;Único;1;17000;img/Camisadehiloblanco.jpeg
-Camisa;Femenino;Camisa de hilo;Beige;Único;1;17000;img/Camisadehilo3colores.jpeg
-Camisa;Femenino;Camisa de hilo;Negro;Único;1;17000;img/Camisadehilo3colores.jpeg
-Blusa;Femenino;Blusa Sofía para atar;Blanco;Único;1;18000;img/Blusasofiablanco.jpeg
-Blusa;Femenino;Blusa calada;Blanco;Único;1;9000;img/Blusacalada3colores.jpeg
-Blusa;Femenino;Blusa calada;Beige;Único;1;9000;img/Blusacalada3colores.jpeg
-Blusa;Femenino;Blusa calada;Marrón;Único;1;9000;img/Blusacalada3colores.jpeg
+Shorts;Femenino;Short sastrero;Blanco;Único;1;14000;img/Shortsastrero3colores.jpeg
+Shorts;Femenino;Short sastrero;Negro;Único;1;14000;img/Shortsastrero3colores.jpeg
+Shorts;Femenino;Short sastrero;Lila;Único;1;14000;img/Shortsastrero3colores.jpeg
+Shorts;Femenino;Short playero de hilo;blanco;Único;1;14000;img/Shortplayerodehilobeige.jpeg
+Vestidos;Femenino;Set Lara;Negro;Único;1;23000;img/SetLaranegro.jpeg
+Vestidos;Femenino;Set Lara;Marrón;Único;1;23000;img/SetLaramarrón.jpeg
+Musculosas;Femenino;Musculosa love;Blanco;Único;1;9000;img/Musculosalove2colores.jpeg
+Musculosas;Femenino;Musculosa love;Azul;Único;1;9000;img/Musculosalove2colores.jpeg
+Musculosas;Femenino;Musculosa basic morley;Marrón;Único;1;7000;img/Musculosabasicmorleymarrón.jpeg
+Musculosas;Femenino;Musculosa basic morley;Negro;Único;1;7000;img/Musculosabasicmorley4colores.jpeg
+Musculosas;Femenino;Musculosa basic morley;Rosa;Único;1;7000;img/Musculosabasicmorley4colores.jpeg
+Musculosas;Femenino;Musculosa basic morley;Amarillo;Único;1;7000;img/Musculosabasicmorley4colores.jpeg
+Camisas;Femenino;Camisa de hilo;Blanco;Único;1;17000;img/Camisadehiloblanco.jpeg
+Camisas;Femenino;Camisa de hilo;Beige;Único;1;17000;img/Camisadehilo3colores.jpeg
+Camisas;Femenino;Camisa de hilo;Negro;Único;1;17000;img/Camisadehilo3colores.jpeg
+Blusas;Femenino;Blusa Sofía para atar;Blanco;Único;1;18000;img/Blusasofiablanco.jpeg
+Blusas;Femenino;Blusa calada;Blanco;Único;1;9000;img/Blusacalada3colores.jpeg
+Blusas;Femenino;Blusa calada;Beige;Único;1;9000;img/Blusacalada3colores.jpeg
+Blusas;Femenino;Blusa calada;Marrón;Único;1;9000;img/Blusacalada3colores.jpeg
