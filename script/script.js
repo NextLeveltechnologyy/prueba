@@ -294,3 +294,47 @@ document.addEventListener("DOMContentLoaded", async () => {
     cerrar.onclick = () => carritoDiv.style.display = "none";
 
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const container = document.getElementById("move");
+    if (!container) return;
+
+    const images = Array.from(container.querySelectorAll("img"));
+    if (!images.length) return;
+
+    let speed = 0.3; // px por frame
+    let positions = [];
+
+    function init() {
+        positions = [];
+        let x = 0;
+
+        images.forEach(img => {
+            img.style.left = x + "px";
+            positions.push(x);
+            x += img.offsetWidth;
+        });
+    }
+
+    function animate() {
+        images.forEach((img, i) => {
+            positions[i] += speed;
+            img.style.left = positions[i] + "px";
+
+            // Si salió completamente por la derecha
+            if (positions[i] > container.offsetWidth) {
+                const minX = Math.min(...positions);
+                positions[i] = minX - img.offsetWidth;
+                img.style.left = positions[i] + "px";
+            }
+        });
+
+        requestAnimationFrame(animate);
+    }
+
+    window.addEventListener("resize", init);
+
+    init();
+    animate();
+});

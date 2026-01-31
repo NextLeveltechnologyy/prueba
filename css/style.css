@@ -190,21 +190,20 @@ hr {
     }
 }
 
-#agenda {
-    white-space: nowrap;
-    animation: cta 2.5s infinite;
+#move {
+    position: relative;
+    width: 100vw;
+    height: 45vw;
+    overflow: hidden;
 }
 
-#imagenhome1,
-#imagenhome2 {
+
+#move img {
     position: absolute;
-    width: 15vw;
-    height: 21vw;
-    right: 3.5vw;
-}
-
-#imagenhome2 {
-    left: 3.5vw;
+    padding: 0 0.5vw;
+    top: 0;
+    width: 30vw;
+    flex-shrink: 0;
 }
 
 .contacto {
