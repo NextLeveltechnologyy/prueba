@@ -821,13 +821,13 @@ footer a:hover,
     .carrusel4 {
         margin-right: 2.5vw;
     }
-
-    #imagenhome1,
-    #imagenhome2 {
-        width: 12vw;
-        height: 15vw;
+    #move {
+        height: 35vw;
     }
 
+    #move img {
+        width: 25vw;
+    }
     /*contenedor de filtros*/
     #filtros {
         top: 0.2vw;
